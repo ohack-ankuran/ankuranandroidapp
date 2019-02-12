@@ -5,11 +5,16 @@ import android.os.Bundle;
 
 import com.paypal.ankuran.R;
 
-public class InventoryDetailsActivity extends AppCompatActivity {
+public class InventoryDetailsActivity extends BaseActivity {
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inventory_details);
+    protected int getContentViewId() {
+        return R.layout.activity_inventory_details;
+    }
+
+    @Override
+    protected void onCreateActivity(Bundle bundle) {
+
     }
 }

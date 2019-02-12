@@ -3,12 +3,22 @@ package com.paypal.ankuran.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.paypal.ankuran.AppMain;
 import com.paypal.ankuran.R;
+import com.paypal.ankuran.util.LogUtils;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     TextView mTVWorkerProfile;
     TextView mTVCalculateWage;
@@ -16,11 +26,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView mTVSocialImpact;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        initUI();
+    protected int getContentViewId() {
+        return R.layout.activity_main;
     }
+
+    @Override
+    protected void onCreateActivity(Bundle bundle) {
+        initToolbar();
+        initUI();
+        fetchDummyTODODetails("1");
+    }
+
+
+    private void initToolbar() {
+       //TODO add toolbar enabling code
+
+    }
+
 
     private void initUI() {
         mTVWorkerProfile = findViewById(R.id.tvWorkerProfile);
@@ -60,6 +82,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(socialReportIntent);
                 break;
         }
+
+    }
+
+
+    private void fetchDummyTODODetails(String todoId) {
+        Log.d(TAG, "fetchIssueDetails");
+
+        AppMain.getDefaultNetWorkClient().todos(todoId).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+//                if(response.code() == HTTP_CODE_SUCCESS){
+//                    setIncidentValues(response.body());
+//                }
+                LogUtils.debug("OnResponse",new Gson().toJson(response));
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                //TODO: Show retrofit error dialog
+                LogUtils.debug("onFailure",new Gson().toJson(call));
+            }
+        });
 
     }
 }

@@ -5,11 +5,16 @@ import android.os.Bundle;
 
 import com.paypal.ankuran.R;
 
-public class SocialReportActivity extends AppCompatActivity {
+public class SocialReportActivity extends BaseActivity {
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_social_report);
+    protected int getContentViewId() {
+        return R.layout.activity_social_report;
+    }
+
+    @Override
+    protected void onCreateActivity(Bundle bundle) {
+
     }
 }

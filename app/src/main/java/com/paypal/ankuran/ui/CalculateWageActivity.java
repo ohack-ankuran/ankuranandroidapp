@@ -5,11 +5,16 @@ import android.os.Bundle;
 
 import com.paypal.ankuran.R;
 
-public class CalculateWageActivity extends AppCompatActivity {
+public class CalculateWageActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calculate_wage);
+    protected int getContentViewId() {
+        return R.layout.activity_calculate_wage;
     }
+
+    @Override
+    protected void onCreateActivity(Bundle bundle) {
+
+    }
+
 }

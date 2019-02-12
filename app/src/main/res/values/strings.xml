@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Ankuran</string>
+    <string name="txt_name">Name</string>
+    <string name="txt_phone">Phone</string>
+    <string name="txt_husband_name">Husband’s  Name</string>
+    <string name="txt_husband_id">Husband’s  Worker ID</string>
+    <string name="btxt_save">Save</string>
 </resources>

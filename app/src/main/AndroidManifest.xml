@@ -11,18 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.ankuran.ui.MainActivity">
+        <activity android:name="com.ankuran.ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.ankuran.ui.WorkersProfileListActivity" />
-        <activity android:name="com.ankuran.ui.CalculateWageActivity" />
-        <activity android:name="com.ankuran.ui.SocialReportActivity" />
-        <activity android:name="com.ankuran.ui.InventoryDetailsActivity" />
-        <activity android:name="com.ankuran.ui.AddNewWorker"></activity>
+        <activity android:name="com.ankuran.ui.activity.WorkersProfileListActivity" />
+        <activity android:name="com.ankuran.ui.activity.CalculateWageActivity" />
+        <activity android:name="com.ankuran.ui.activity.SocialReportActivity" />
+        <activity android:name="com.ankuran.ui.activity.InventoryDetailsActivity" />
+        <activity android:name="com.ankuran.ui.activity.AddNewWorker"></activity>
     </application>
 
 </manifest>

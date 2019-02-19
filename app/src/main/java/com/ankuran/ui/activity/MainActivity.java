@@ -1,12 +1,15 @@
-package com.ankuran.ui;
+package com.ankuran.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ankuran.AppMain;
+import com.ankuran.ui.fragment.DatePickerFragment;
 import com.ankuran.util.LogUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -16,7 +19,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener,DatePickerFragment.DatePickerDialogListener {
 
     TextView mTVWorkerProfile;
     TextView mTVCalculateWage;
@@ -76,12 +79,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
 
             case R.id.tvSocialReport:
-                Intent socialReportIntent = new Intent(MainActivity.this,SocialReportActivity.class);
-                startActivity(socialReportIntent);
+                showDatePicker();
+//                Intent socialReportIntent = new Intent(MainActivity.this,SocialReportActivity.class);
+//                startActivity(socialReportIntent);
                 break;
         }
 
     }
+
+
 
 
     private void fetchDummyTODODetails(String todoId) {
@@ -103,5 +109,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             }
         });
 
+    }
+
+    @Override
+    public void onDateSelected(DatePicker view,int day, int month, int year) {
+        Toast.makeText(this, "selected date is " + year +
+                " / " + month +
+                " / " + day, Toast.LENGTH_SHORT).show();
     }
 }

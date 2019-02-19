@@ -1,15 +1,15 @@
-package com.ankuran.ui;
+package com.ankuran.ui.activity;
 
 import android.os.Bundle;
 
 import com.paypal.ankuran.R;
 
-public class SocialReportActivity extends BaseActivity {
+public class InventoryDetailsActivity extends BaseActivity {
 
 
     @Override
     protected int getContentViewId() {
-        return R.layout.activity_social_report;
+        return R.layout.activity_inventory_details;
     }
 
     @Override

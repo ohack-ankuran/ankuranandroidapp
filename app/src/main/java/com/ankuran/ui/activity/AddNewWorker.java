@@ -1,4 +1,4 @@
-package com.ankuran.ui;
+package com.ankuran.ui.activity;
 
 import android.os.Bundle;
 import android.view.View;

@@ -1,6 +1,7 @@
-package com.ankuran.ui;
+package com.ankuran.ui.activity;
 
 import android.app.ProgressDialog;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Context;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
+import com.ankuran.ui.fragment.DatePickerFragment;
 import com.ankuran.util.LogUtils;
 
 import butterknife.ButterKnife;
@@ -156,6 +158,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
+
+    public void showDatePicker() {
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "date picker");
+    }
 
 
 //

@@ -4,25 +4,25 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".AppMain"
+        android:name="com.ankuran.AppMain"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.MainActivity">
+        <activity android:name="com.ankuran.ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.WorkersProfileListActivity" />
-        <activity android:name=".ui.CalculateWageActivity" />
-        <activity android:name=".ui.SocialReportActivity" />
-        <activity android:name=".ui.InventoryDetailsActivity" />
-        <activity android:name=".ui.AddNewWorker"></activity>
+        <activity android:name="com.ankuran.ui.WorkersProfileListActivity" />
+        <activity android:name="com.ankuran.ui.CalculateWageActivity" />
+        <activity android:name="com.ankuran.ui.SocialReportActivity" />
+        <activity android:name="com.ankuran.ui.InventoryDetailsActivity" />
+        <activity android:name="com.ankuran.ui.AddNewWorker"></activity>
     </application>
 
 </manifest>

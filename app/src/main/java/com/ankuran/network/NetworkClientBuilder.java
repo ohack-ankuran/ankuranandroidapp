@@ -1,12 +1,12 @@
-package com.paypal.ankuran.network;
+package com.ankuran.network;
 
 import android.content.Context;
 
+import com.ankuran.AppConfig;
+import com.ankuran.util.DateFormatter;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.paypal.ankuran.AppConfig;
-import com.paypal.ankuran.util.DateFormatter;
 
 import java.security.cert.CertificateException;
 import java.util.Collections;

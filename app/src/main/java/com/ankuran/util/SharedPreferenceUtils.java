@@ -1,8 +1,8 @@
-package com.paypal.ankuran.util;
+package com.ankuran.util;
 
 import android.content.SharedPreferences;
 
-import com.paypal.ankuran.AppMain;
+import com.ankuran.AppMain;
 
 import static android.os.Build.VERSION.SDK_INT;
 import static android.os.Build.VERSION_CODES.GINGERBREAD;

@@ -1,11 +1,11 @@
-package com.paypal.ankuran;
+package com.ankuran;
 
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.paypal.ankuran.network.NetworkClient;
-import com.paypal.ankuran.network.NetworkClientBuilder;
+import com.ankuran.network.NetworkClient;
+import com.ankuran.network.NetworkClientBuilder;
 
 public class AppMain extends Application {
 

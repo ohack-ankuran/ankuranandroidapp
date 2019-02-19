@@ -1,6 +1,6 @@
-package com.paypal.ankuran.util;
+package com.ankuran.util;
 
-import com.paypal.ankuran.AppConfig;
+import com.ankuran.AppConfig;
 
 public class LogUtils {
 

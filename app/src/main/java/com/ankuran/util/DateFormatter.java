@@ -1,4 +1,4 @@
-package com.paypal.ankuran.util;
+package com.ankuran.util;
 
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;

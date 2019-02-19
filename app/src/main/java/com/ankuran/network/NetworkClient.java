@@ -1,4 +1,4 @@
-package com.paypal.ankuran.network;
+package com.ankuran.network;
 
 import com.google.gson.JsonObject;
 

@@ -1,4 +1,4 @@
-package com.paypal.ankuran.ui;
+package com.ankuran.ui;
 
 import android.app.ProgressDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
-import com.paypal.ankuran.util.LogUtils;
+import com.ankuran.util.LogUtils;
 
 import butterknife.ButterKnife;
 

@@ -1,10 +1,10 @@
-package com.paypal.ankuran;
+package com.ankuran;
 
 import android.os.Environment;
 
 import java.io.File;
 
-import static com.paypal.ankuran.AppConfig.Host.STAGING;
+import static com.ankuran.AppConfig.Host.STAGING;
 
 public class AppConfig {
     private static final Host HOST_DEFAULT = STAGING;

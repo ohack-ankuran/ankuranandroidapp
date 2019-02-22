@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.paypal.ankuran">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -22,7 +23,10 @@
         <activity android:name="com.ankuran.ui.activity.CalculateWageActivity" />
         <activity android:name="com.ankuran.ui.activity.SocialReportActivity" />
         <activity android:name="com.ankuran.ui.activity.InventoryDetailsActivity" />
-        <activity android:name="com.ankuran.ui.activity.AddNewWorker"></activity>
+        <activity android:name="com.ankuran.ui.activity.AddNewWorker" />
+        <activity android:name="com.ankuran.ui.activity.AddPaymentWageActivity" />
+        <activity android:name="com.ankuran.ui.activity.WorkerActivityList" />
+        <activity android:name="com.ankuran.ui.activity.ItemGridViewActivity"></activity>
     </application>
 
 </manifest>

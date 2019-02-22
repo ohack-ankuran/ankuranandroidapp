@@ -8,8 +8,6 @@ import com.ankuran.network.NetworkClient;
 import com.ankuran.network.NetworkClientBuilder;
 
 public class AppMain extends Application {
-
-
     private static Context mContext;
     private static NetworkClient sNetworkClient;
     private static AppMain sApplicationInstance = null;

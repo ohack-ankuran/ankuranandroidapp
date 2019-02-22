@@ -35,9 +35,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,D
     protected void onCreateActivity(Bundle bundle) {
         initToolbar();
         initUI();
-        fetchDummyTODODetails("1");
-    }
+        dummyGetCall("1");
+        dummyPostCall();
 
+    }
 
     private void initToolbar() {
        //TODO add toolbar enabling code
@@ -79,18 +80,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,D
 
 
             case R.id.tvSocialReport:
-                showDatePicker();
-//                Intent socialReportIntent = new Intent(MainActivity.this,SocialReportActivity.class);
-//                startActivity(socialReportIntent);
+//                showDatePicker();
+                Intent socialReportIntent = new Intent(MainActivity.this,ItemGridViewActivity.class);
+                startActivity(socialReportIntent);
                 break;
         }
 
     }
 
 
-
-
-    private void fetchDummyTODODetails(String todoId) {
+    private void dummyGetCall(String todoId) {
         Log.d(TAG, "fetchIssueDetails");
 
         AppMain.getDefaultNetWorkClient().todos(todoId).enqueue(new Callback<JsonObject>() {
@@ -99,16 +98,40 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,D
 //                if(response.code() == HTTP_CODE_SUCCESS){
 //                    setIncidentValues(response.body());
 //                }
-                LogUtils.debug("OnResponse",new Gson().toJson(response));
+                LogUtils.debug("Network call OnResponse get call",new Gson().toJson(response));
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
                 //TODO: Show retrofit error dialog
-                LogUtils.debug("onFailure",new Gson().toJson(call));
+                LogUtils.debug("Network call onFailure get callv",new Gson().toJson(call));
             }
         });
 
+    }
+
+
+    private void dummyPostCall(){
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("title", "foo");
+        jsonObject.addProperty("body", "bar");
+        jsonObject.addProperty("userId", 1);
+
+        AppMain.getDefaultNetWorkClient().posts(jsonObject).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+//                if(response.code() == HTTP_CODE_SUCCESS){
+//                    setIncidentValues(response.body());
+//                }
+                LogUtils.debug("Network call OnResponse post call",new Gson().toJson(response));
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                //TODO: Show retrofit error dialog
+                LogUtils.debug("Network call onFailure post call",new Gson().toJson(call));
+            }
+        });
     }
 
     @Override

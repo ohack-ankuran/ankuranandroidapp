@@ -5,4 +5,13 @@
     <string name="txt_husband_name">Husband’s  Name</string>
     <string name="txt_husband_id">Husband’s  Worker ID</string>
     <string name="btxt_save">Save</string>
+    <string name="txt_add_payment">ADD PAYMENT</string>
+    <string name="txt_add_wage">ADD WAGES</string>
+    <string name="txt_date">Date</string>
+    <string name="txt_payment">Payment</string>
+    <string name="txt_item">Item</string>
+    <string name="txt_quantity">Quantity</string>
+    <string name="txt_amount">Amount</string>
+    <string name="btxt_group_wage">Group Wages</string>
+    <string name="btxt_new_worker">Add New Worker</string>
 </resources>

@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.ankuran.AppConstant;
 import com.ankuran.R;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

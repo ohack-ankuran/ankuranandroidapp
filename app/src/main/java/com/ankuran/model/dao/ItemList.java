@@ -10,4 +10,12 @@ import lombok.Data;
 @Data
 public class ItemList implements Serializable {
     List<Item> products;
+
+    public List<Item> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Item> products) {
+        this.products = products;
+    }
 }

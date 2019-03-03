@@ -13,7 +13,7 @@ import com.ankuran.model.dao.EmployeeList;
 import com.ankuran.ui.adaptar.WorkerListRecyclerViewAdapter;
 import com.ankuran.ui.adaptar.listener.OnRecyclerItemClickListener;
 import com.google.gson.Gson;
-import com.paypal.ankuran.R;
+import com.ankuran.R;
 
 import java.util.ArrayList;
 import java.util.List;

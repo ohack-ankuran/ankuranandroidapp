@@ -12,7 +12,7 @@ import com.ankuran.ui.adaptar.ItemRecyclerViewAdapter;
 import com.ankuran.ui.adaptar.listener.OnRecyclerItemClickListener;
 import com.ankuran.util.LogUtils;
 import com.google.gson.Gson;
-import com.paypal.ankuran.R;
+import com.ankuran.R;
 
 import java.util.ArrayList;
 import java.util.List;

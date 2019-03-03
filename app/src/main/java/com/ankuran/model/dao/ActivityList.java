@@ -10,4 +10,12 @@ import lombok.Data;
 @Data
 public class ActivityList implements Serializable {
     List<Activity>activities;
+
+    public List<Activity> getActivities() {
+        return activities;
+    }
+
+    public void setActivities(List<Activity> activities) {
+        this.activities = activities;
+    }
 }

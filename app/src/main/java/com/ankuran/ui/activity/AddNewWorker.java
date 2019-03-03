@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.paypal.ankuran.R;
+import com.ankuran.R;
 
 public class AddNewWorker extends BaseActivity implements View.OnClickListener {
 

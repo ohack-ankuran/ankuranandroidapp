@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.ankuran.model.Employee;
 import com.ankuran.ui.adaptar.listener.OnRecyclerItemClickListener;
-import com.paypal.ankuran.R;
+import com.ankuran.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -13,7 +13,7 @@ import com.ankuran.ui.fragment.DatePickerFragment;
 import com.ankuran.util.LogUtils;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import com.paypal.ankuran.R;
+import com.ankuran.R;
 
 import retrofit2.Call;
 import retrofit2.Callback;

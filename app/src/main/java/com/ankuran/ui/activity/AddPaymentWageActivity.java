@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.ankuran.AppConstant;
-import com.paypal.ankuran.R;
+import com.ankuran.R;
 
 public class AddPaymentWageActivity extends BaseActivity implements View.OnClickListener {
 

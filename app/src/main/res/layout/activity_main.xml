@@ -38,81 +38,126 @@
         android:layout_height="0dp"
         android:layout_weight="2"
         android:orientation="vertical"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
         >
 
         <LinearLayout
-            android:layout_weight="1"
-            android:layout_marginTop="25dp"
+            android:gravity="center"
             android:orientation="horizontal"
+            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tvWorkerProfile"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:drawableTop="@drawable/worker_profile"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="#9b6e2e"
-                android:lineSpacingExtra="4sp"
-                android:text="Worker Profile"
-                />
+            android:layout_height="0dp">
 
-            <TextView
-                android:id="@+id/tvCalculateWage"
-                android:gravity="center"
+            <LinearLayout
+                android:id="@+id/llWorkerProfile"
+                android:orientation="vertical"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/wages"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="#9b6e2e"
-                android:lineSpacingExtra="4sp"
-                android:text="Calculate Wages"
-                />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/worker_profile"
+                    android:layout_width="120dp"
+                    android:layout_height="100dp" />
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#9b6e2e"
+                    android:lineSpacingExtra="4sp"
+                    android:text="Worker Profile"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llCalculateWage"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/wages"
+                    android:layout_width="120dp"
+                    android:layout_height="100dp" />
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#9b6e2e"
+                    android:lineSpacingExtra="4sp"
+                    android:text="Report"
+                    />
+
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_weight="1"
             android:orientation="horizontal"
+            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp">
 
-            <TextView
-                android:id="@+id/tvInventory"
-                android:gravity="center"
+            <LinearLayout
+                android:id="@+id/llInventory"
+                android:orientation="vertical"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/inventory"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="#9b6e2e"
-                android:lineSpacingExtra="4sp"
-                android:text="Inventory"
-                />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tvSocialReport"
-                android:gravity="center"
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/inventory"
+                    android:layout_width="120dp"
+                    android:layout_height="100dp" />
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#9b6e2e"
+                    android:lineSpacingExtra="4sp"
+                    android:text="Inventory"
+                    />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/llSocialReport"
+                 android:orientation="vertical"
                 android:layout_weight="1"
-                android:drawableTop="@drawable/social_impact_report"
-                android:layout_marginTop="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textColor="#9b6e2e"
-                android:lineSpacingExtra="4sp"
-                android:text="Social Impact Report"
-                />
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:src="@drawable/social_impact_report"
+                    android:layout_width="120dp"
+                    android:layout_height="100dp" />
+                <TextView
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textColor="#9b6e2e"
+                    android:lineSpacingExtra="4sp"
+                    android:text="Social Impact Report"
+                    />
+
+
+
+            </LinearLayout>
+
 
 
         </LinearLayout>
+
 
     </LinearLayout>
 

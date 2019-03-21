@@ -1,6 +1,7 @@
 package com.ankuran.ui.adaptar;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +10,7 @@ import android.widget.TextView;
 
 import com.ankuran.model.Employee;
 import com.ankuran.ui.adaptar.listener.OnRecyclerItemClickListener;
-import com.paypal.ankuran.R;
+import com.ankuran.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,9 @@ public class WorkerListRecyclerViewAdapter extends RecyclerView.Adapter<WorkerLi
     private ArrayList<Integer> mSectionPositions;
 
 
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
+    }
 
     @Override
     public int getSectionForPosition(int position) {
@@ -74,14 +78,35 @@ public class WorkerListRecyclerViewAdapter extends RecyclerView.Adapter<WorkerLi
 
 
     static class ViewHolder extends RecyclerView.ViewHolder {
+        //TODo add imageview for profile screen
         TextView txtName;
+        TextView txtMobile;
+        TextView txtAmount;
         ViewHolder(View itemView) {
             super(itemView);
             txtName =itemView.findViewById(R.id.name);
+            txtMobile =itemView.findViewById(R.id.mobile);
+            txtAmount =itemView.findViewById(R.id.dueAmount);
         }
 
         public void bind(final Employee employee, final OnRecyclerItemClickListener listener, final int position) {
-            txtName.setText(employee.getFullName());
+            if(!TextUtils.isEmpty(employee.getFullName())){
+                txtName.setText(employee.getFullName());
+            }else{
+                txtName.setText("");
+            }
+            if(!TextUtils.isEmpty(employee.getMobile())){
+                txtMobile.setText(employee.getMobile());
+            }else{
+                txtMobile.setText("");
+            }
+            if(employee.getOutstandingDue()!=0){
+                int amount= (int) employee.getOutstandingDue();
+                txtAmount.setText("RS "+amount);
+            }else{
+                txtAmount.setText("");
+            }
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

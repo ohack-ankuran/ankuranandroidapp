@@ -2,7 +2,7 @@ package com.ankuran.ui.activity;
 
 import android.os.Bundle;
 
-import com.paypal.ankuran.R;
+import com.ankuran.R;
 
 public class InventoryDetailsActivity extends BaseActivity {
 

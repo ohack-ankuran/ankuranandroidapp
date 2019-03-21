@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.paypal.ankuran">
+    package="com.ankuran">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+
+    <!-- Start of Account Authentication related permission -->
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <!-- Start of Account Authentication related permission -->
+
+
+    <!-- Start of SyncAdapter related permission -->
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_SYNC_STATS" />
 
     <application
         android:name="com.ankuran.AppMain"
@@ -19,14 +34,86 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.ankuran.ui.activity.WorkersProfileListActivity" />
+        <activity android:name="com.ankuran.ui.activity.WorkersProfileListActivity"
+            android:label="@string/title_worker_list"/>
         <activity android:name="com.ankuran.ui.activity.CalculateWageActivity" />
         <activity android:name="com.ankuran.ui.activity.SocialReportActivity" />
         <activity android:name="com.ankuran.ui.activity.InventoryDetailsActivity" />
-        <activity android:name="com.ankuran.ui.activity.AddNewWorker" />
+        <activity android:name="com.ankuran.ui.activity.AddNewWorker"
+            android:label="@string/title_add_new_worker" />
         <activity android:name="com.ankuran.ui.activity.AddPaymentWageActivity" />
-        <activity android:name="com.ankuran.ui.activity.WorkerActivityList" />
-        <activity android:name="com.ankuran.ui.activity.ItemGridViewActivity"></activity>
+        <activity android:name="com.ankuran.ui.activity.WorkerActivityList"
+            android:label="@string/title_worker_profile"/>
+        <activity android:name="com.ankuran.ui.activity.ItemGridViewActivity" />
+        <activity android:name="com.ankuran.ui.activity.AddNewItem"></activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.ankuran.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
+
+        <!-- Start of service required TMS Account Authentication -->
+        <service android:name="com.ankuran.framework.account.AnkuranAccountAuthenticatorService">
+
+            <!-- Required filter used by the system to launch our account service. -->
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator" />
+            </intent-filter>
+            <!-- This points to an XMLfile which describes our account service. -->
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
+        </service>
+        <!-- End of service required Account Authentication -->
+
+
+        <!-- Start of imagesyncadapter declaration -->
+        <!--
+             ContentProvider
+              The "authorities" here are defined as part of a ContentProvider interface. It's used here
+              as an attachment point for the SyncAdapter. See res/xml/imagesyncadapter.xml and
+              TMSImageSyncService.java.
+
+              Since this ContentProvider is not exported, it will not be accessible outside of this app's
+              package.
+        -->
+
+        <provider
+            android:name="com.ankuran.framework.imagesync.AnkuranImageSyncProvider"
+            android:authorities="com.quikr.tms.framework.imagesync"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:syncable="true" />
+
+        <!--
+      This service implements our SyncAdapter. It needs to be exported, so that the system
+      sync framework can access it.
+        -->
+        <service
+            android:name="com.ankuran.framework.imagesync.AnkuranImageSyncService"
+            android:exported="false"
+            android:process=":sync">
+
+            <!--
+            This intent filter is required. It allows the system to launch our sync service
+            as needed.
+            -->
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter" />
+            </intent-filter>
+            <!-- This points to a required XML file which describes our SyncAdapter. -->
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/imagesyncadapter" />
+        </service>
+        <!-- END of imagesyncadapter declaration -->
+
+
     </application>
 
 </manifest>

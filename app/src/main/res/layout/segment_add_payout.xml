@@ -5,61 +5,90 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:padding="20dp"
-    android:visibility="gone"
+    android:visibility="visible"
     android:layout_height="match_parent">
 
     <TextView
+        android:layout_gravity="center"
+        android:id="@+id/txtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="#020202"
-        android:gravity="end"
-        android:text="@string/txt_date"
+        android:textSize="25sp"
+        android:textColor="@color/headerBrown"
+        android:layout_marginBottom="5dp"
+        android:text="@string/btxt_add_payment"
         />
 
-    <EditText
-        android:id="@+id/etDate"
-        android:hint="11 JAN 2019"
-        android:layout_margin="20dp"
-        android:inputType="none"
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:background="@drawable/bg_rounded_edittext"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#0d5561"
+            android:lineSpacingExtra="4sp"
+            android:text="@string/txt_date"
+            />
+
+        <EditText
+            android:id="@+id/etPaymentDate"
+            android:hint="11 JAN 2019"
+            android:layout_weight="7"
+            android:layout_width="0dp"
+            android:enabled="false"
+            android:background="@drawable/bg_rounded_edittext"
+            android:layout_height="wrap_content" />
 
 
+    </LinearLayout>
 
-    <TextView
-        android:layout_marginTop="30dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textColor="#020202"
-        android:gravity="end"
-        android:text="@string/txt_payment"
-        />
-
-    <EditText
-        android:id="@+id/etPayment"
-        android:hint="745675"
-        android:layout_margin="20dp"
-        android:inputType="number"
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:background="@drawable/bg_rounded_edittext"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#0d5561"
+            android:lineSpacingExtra="4sp"
+            android:text="@string/txt_payment"
+            />
+
+        <EditText
+            android:id="@+id/etPayment"
+            android:hint="745675"
+            android:layout_weight="7"
+            android:inputType="number"
+            android:layout_width="0dp"
+            android:background="@drawable/bg_rounded_edittext"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
 
 
     <Button
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:id="@+id/btnSave"
+        android:id="@+id/btnAddPayment"
         android:layout_gravity="center"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"
-        android:text="@string/btxt_save"
-        android:textSize="30sp"
+        android:text="@string/btxt_add_payment"
+        android:textSize="20sp"
         android:textColor="@android:color/white"
         android:background="@drawable/primary_button_bg"
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
 </LinearLayout>

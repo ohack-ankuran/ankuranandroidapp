@@ -119,7 +119,7 @@ public class NetworkClientBuilder {
 
     private Interceptor getLoggingInterceptor() {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.HEADERS);
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return loggingInterceptor;
 
     }
@@ -128,8 +128,8 @@ public class NetworkClientBuilder {
 
     private Converter.Factory buildGsonConverterFactory() {
         GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.registerTypeAdapter(Date.class, new DateFormatter());
-        gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
+//        gsonBuilder.registerTypeAdapter(Date.class, new DateFormatter());
+//        gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
         Gson myGson = gsonBuilder.create();
         return GsonConverterFactory.create(myGson);
     }

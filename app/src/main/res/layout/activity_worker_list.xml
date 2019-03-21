@@ -12,6 +12,12 @@
         android:layout_height="wrap_content"
         layout="@layout/segment_worker_description" />
 
+    <include
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/segment_activity_filter" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/activityRecyclerView"
         android:layout_width="match_parent"

@@ -2,8 +2,8 @@
     <string name="app_name">Ankuran</string>
     <string name="txt_name">Name</string>
     <string name="txt_phone">Phone</string>
-    <string name="txt_husband_name">Husband’s  Name</string>
-    <string name="txt_husband_id">Husband’s  Worker ID</string>
+    <string name="txt_husband_name">Husband’s Name</string>
+    <string name="txt_husband_id">Husband’s Id</string>
     <string name="btxt_save">Save</string>
     <string name="txt_add_payment">ADD PAYMENT</string>
     <string name="txt_add_wage">ADD WAGES</string>
@@ -14,4 +14,17 @@
     <string name="txt_amount">Amount</string>
     <string name="btxt_group_wage">Group Wages</string>
     <string name="btxt_new_worker">Add New Worker</string>
+    <string name="network_error">Network error!\nPlease make sure this device is
+		connected to internet</string>
+    <string name="title_add_new_worker">Add New Worker</string>
+    <string name="title_worker_list">Worker List</string>
+    <string name="btxt_add_payment">Add Payment</string>
+    <string name="Rs">\u20B9</string>
+    <string name="title_worker_profile">Worker Profile</string>
+    <string name="btxt_add_wage">Add Wages</string>
+    <string name="txt_start_date">Start Date</string>
+    <string name="txt_end_date">End Date</string>
+    <string name="btxt_view">View</string>
+    <string name="txt_amount_quantity">Amount/pc</string>
+    <string name="add_quantity_prompt">Select Quantity</string>
 </resources>

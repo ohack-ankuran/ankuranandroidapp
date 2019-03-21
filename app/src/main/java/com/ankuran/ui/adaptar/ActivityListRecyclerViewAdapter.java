@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.ankuran.model.Activity;
 import com.ankuran.ui.adaptar.listener.OnRecyclerItemClickListener;
-import com.paypal.ankuran.R;
+import com.ankuran.R;
 
 import java.util.List;
 
@@ -16,6 +16,12 @@ public class ActivityListRecyclerViewAdapter extends RecyclerView.Adapter<Activi
 
     private List<Activity> activityList;
     OnRecyclerItemClickListener onRecyclerItemClickListener;
+
+
+
+    public void setActivityList(List<Activity> activityList) {
+        this.activityList = activityList;
+    }
 
     public ActivityListRecyclerViewAdapter(List<Activity> activityList, OnRecyclerItemClickListener onRecyclerItemClickListener) {
         this.activityList = activityList;

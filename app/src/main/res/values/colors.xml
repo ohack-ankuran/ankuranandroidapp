@@ -10,4 +10,9 @@
     <color name="editTextBG">#F8F8F8</color>
     <color name="editTextBorder">#959595</color>
     <color name="viewBg">#f1f5f8</color>
+
+    <color name="headerBrown">#9b6e2e</color>
+
+
+
 </resources>

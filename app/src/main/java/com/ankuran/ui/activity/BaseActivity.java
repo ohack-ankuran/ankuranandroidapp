@@ -1,7 +1,9 @@
 package com.ankuran.ui.activity;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Context;
@@ -173,5 +175,13 @@ public abstract class BaseActivity extends AppCompatActivity {
 //
 //        mDisplayResponseDialog=newResponseDialog;
 //    }
+
+
+    public void showInfoDialog(String title,String msg,DialogInterface.OnClickListener listener){
+        new AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(msg)
+                .setPositiveButton("Ok", listener).show();
+    }
 
 }

@@ -14,8 +14,9 @@ public class AppConfig {
     public static final String DATABASE_NAME = "AnkuranDB";
 
     public enum Host{
-        STAGING("https://jsonplaceholder.typicode.com"),
-        PRODUCTION("https://snffdkln:3000");
+        STAGING1("https://jsonplaceholder.typicode.com"),
+        STAGING("http://ankuran-hack.ap-south-1.elasticbeanstalk.com"),
+        PRODUCTION("http://ankuran-hack.ap-south-1.elasticbeanstalk.com");
 
         private final String url;
 

@@ -7,6 +7,14 @@
     android:layout_height="match_parent"
     tools:context="com.ankuran.ui.activity.AddPaymentWageActivity">
 
+
+
+    <include
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/segment_worker_description" />
+
     <include
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"

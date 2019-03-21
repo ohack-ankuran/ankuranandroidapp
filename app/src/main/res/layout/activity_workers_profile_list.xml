@@ -9,31 +9,30 @@
     tools:context="com.ankuran.ui.activity.WorkersProfileListActivity">
 
     <LinearLayout
-        android:padding="20dp"
+        android:padding="10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
         <Button
             android:id="@+id/btnGroupWages"
-            android:drawableLeft="@android:drawable/ic_input_add"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:background="@drawable/bg_button_shadow"
+            android:background="@drawable/rounded_button"
             android:text="@string/btxt_group_wage"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/btnAddNewWorker"
-            android:drawableLeft="@android:drawable/ic_input_add"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
-            android:background="@drawable/bg_button_shadow"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/rounded_button"
             android:text="@string/btxt_new_worker"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content" />
     </LinearLayout>
 

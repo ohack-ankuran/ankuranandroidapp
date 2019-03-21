@@ -1,4 +1,4 @@
-package com.paypal.ankuran;
+package com.ankuran;
 
 import org.junit.Test;
 

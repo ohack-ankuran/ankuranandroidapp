@@ -5,26 +5,23 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ankuran.AppMain;
 import com.ankuran.ui.fragment.DatePickerFragment;
-import com.ankuran.util.LogUtils;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.paypal.ankuran.R;
+import com.ankuran.R;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener,DatePickerFragment.DatePickerDialogListener {
 
-    TextView mTVWorkerProfile;
-    TextView mTVCalculateWage;
-    TextView mTVInventory;
-    TextView mTVSocialImpact;
+    LinearLayout mTVWorkerProfile;
+    LinearLayout mTVCalculateWage;
+    LinearLayout mTVInventory;
+    LinearLayout mTVSocialImpact;
 
     @Override
     protected int getContentViewId() {
@@ -35,8 +32,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,D
     protected void onCreateActivity(Bundle bundle) {
         initToolbar();
         initUI();
-        dummyGetCall("1");
-        dummyPostCall();
+//        dummyGetCall("1");
+//        dummyPostCall();
+
+
 
     }
 
@@ -47,41 +46,52 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,D
 
 
     private void initUI() {
-        mTVWorkerProfile = findViewById(R.id.tvWorkerProfile);
-        mTVCalculateWage = findViewById(R.id.tvCalculateWage);
-        mTVInventory = findViewById(R.id.tvInventory);
-        mTVSocialImpact = findViewById(R.id.tvSocialReport);
+        mTVWorkerProfile = findViewById(R.id.llWorkerProfile);
+        mTVCalculateWage = findViewById(R.id.llCalculateWage);
+        mTVInventory = findViewById(R.id.llInventory);
+        mTVSocialImpact = findViewById(R.id.llSocialReport);
 
         mTVWorkerProfile.setOnClickListener(this);
         mTVCalculateWage.setOnClickListener(this);
         mTVInventory.setOnClickListener(this);
         mTVSocialImpact.setOnClickListener(this);
 
+        String date = "2019-03-18T00:48:05.000+0000";
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-mm-dd");
+        try {
+            Log.d("Shikha","Date: " + dateFormat1.parse(date));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z");
+        Log.d("Shikha","Date: " + dateFormat.format(calendar.getTime()));
+
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.tvWorkerProfile:
+            case R.id.llWorkerProfile:
                 Intent workerProfileIntent = new Intent(MainActivity.this,WorkersProfileListActivity.class);
                 startActivity(workerProfileIntent);
                 break;
 
-            case R.id.tvCalculateWage:
+            case R.id.llCalculateWage:
                 Intent calculateIntent = new Intent(MainActivity.this,CalculateWageActivity.class);
                 startActivity(calculateIntent);
                 break;
 
 
-            case R.id.tvInventory:
+            case R.id.llInventory:
                 Intent inventoryIntent = new Intent(MainActivity.this,InventoryDetailsActivity.class);
                 startActivity(inventoryIntent);
                 break;
 
 
-            case R.id.tvSocialReport:
+            case R.id.llSocialReport:
 //                showDatePicker();
-                Intent socialReportIntent = new Intent(MainActivity.this,ItemGridViewActivity.class);
+                Intent socialReportIntent = new Intent(MainActivity.this,AddNewItem.class);
                 startActivity(socialReportIntent);
                 break;
         }
@@ -89,50 +99,50 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,D
     }
 
 
-    private void dummyGetCall(String todoId) {
-        Log.d(TAG, "fetchIssueDetails");
+//    private void dummyGetCall(String todoId) {
+//        Log.d(TAG, "fetchIssueDetails");
+//
+//        AppMain.getDefaultNetWorkClient().todos(todoId).enqueue(new Callback<JsonObject>() {
+//            @Override
+//            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+////                if(response.code() == HTTP_CODE_SUCCESS){
+////                    setIncidentValues(response.body());
+////                }
+//                LogUtils.debug("Network call OnResponse get call",new Gson().toJson(response));
+//            }
+//
+//            @Override
+//            public void onFailure(Call<JsonObject> call, Throwable t) {
+//                //TODO: Show retrofit error dialog
+//                LogUtils.debug("Network call onFailure get callv",new Gson().toJson(call));
+//            }
+//        });
+//
+//    }
 
-        AppMain.getDefaultNetWorkClient().todos(todoId).enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-//                if(response.code() == HTTP_CODE_SUCCESS){
-//                    setIncidentValues(response.body());
-//                }
-                LogUtils.debug("Network call OnResponse get call",new Gson().toJson(response));
-            }
 
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                //TODO: Show retrofit error dialog
-                LogUtils.debug("Network call onFailure get callv",new Gson().toJson(call));
-            }
-        });
-
-    }
-
-
-    private void dummyPostCall(){
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("title", "foo");
-        jsonObject.addProperty("body", "bar");
-        jsonObject.addProperty("userId", 1);
-
-        AppMain.getDefaultNetWorkClient().posts(jsonObject).enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-//                if(response.code() == HTTP_CODE_SUCCESS){
-//                    setIncidentValues(response.body());
-//                }
-                LogUtils.debug("Network call OnResponse post call",new Gson().toJson(response));
-            }
-
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                //TODO: Show retrofit error dialog
-                LogUtils.debug("Network call onFailure post call",new Gson().toJson(call));
-            }
-        });
-    }
+//    private void dummyPostCall(){
+//        JsonObject jsonObject = new JsonObject();
+//        jsonObject.addProperty("title", "foo");
+//        jsonObject.addProperty("body", "bar");
+//        jsonObject.addProperty("userId", 1);
+//
+//        AppMain.getDefaultNetWorkClient().posts(jsonObject).enqueue(new Callback<JsonObject>() {
+//            @Override
+//            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+////                if(response.code() == HTTP_CODE_SUCCESS){
+////                    setIncidentValues(response.body());
+////                }
+//                LogUtils.debug("Network call OnResponse post call",new Gson().toJson(response));
+//            }
+//
+//            @Override
+//            public void onFailure(Call<JsonObject> call, Throwable t) {
+//                //TODO: Show retrofit error dialog
+//                LogUtils.debug("Network call onFailure post call",new Gson().toJson(call));
+//            }
+//        });
+//    }
 
     @Override
     public void onDateSelected(DatePicker view,int day, int month, int year) {
@@ -140,4 +150,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,D
                 " / " + month +
                 " / " + day, Toast.LENGTH_SHORT).show();
     }
+
+
+
 }

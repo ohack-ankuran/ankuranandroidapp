@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
+import com.ankuran.R;
 import com.ankuran.model.Employee;
 import com.ankuran.ui.adaptar.listener.OnRecyclerItemClickListener;
-import com.ankuran.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +48,7 @@ public class WorkerListRecyclerViewAdapter extends RecyclerView.Adapter<WorkerLi
 
     public WorkerListRecyclerViewAdapter(List<Employee> employeeList, OnRecyclerItemClickListener onRecyclerItemClickListener) {
         this.employeeList = employeeList;
-        this.onRecyclerItemClickListener=onRecyclerItemClickListener;
+        this.onRecyclerItemClickListener = onRecyclerItemClickListener;
     }
 
     @Override
@@ -60,14 +60,15 @@ public class WorkerListRecyclerViewAdapter extends RecyclerView.Adapter<WorkerLi
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.row_worker_list, parent, false);
-
+        itemView.findViewById(R.id.checkBox).setVisibility(View.GONE);
+        itemView.findViewById(R.id.icon_caret).setVisibility(View.VISIBLE);
         return new ViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Employee employee = employeeList.get(position);
-        holder.bind(employee,onRecyclerItemClickListener,position);
+        holder.bind(employee, onRecyclerItemClickListener, position);
 
     }
 
@@ -82,28 +83,29 @@ public class WorkerListRecyclerViewAdapter extends RecyclerView.Adapter<WorkerLi
         TextView txtName;
         TextView txtMobile;
         TextView txtAmount;
+
         ViewHolder(View itemView) {
             super(itemView);
-            txtName =itemView.findViewById(R.id.name);
-            txtMobile =itemView.findViewById(R.id.mobile);
-            txtAmount =itemView.findViewById(R.id.dueAmount);
+            txtName = itemView.findViewById(R.id.name);
+            txtMobile = itemView.findViewById(R.id.mobile);
+            txtAmount = itemView.findViewById(R.id.dueAmount);
         }
 
         public void bind(final Employee employee, final OnRecyclerItemClickListener listener, final int position) {
-            if(!TextUtils.isEmpty(employee.getFullName())){
+            if (!TextUtils.isEmpty(employee.getFullName())) {
                 txtName.setText(employee.getFullName());
-            }else{
+            } else {
                 txtName.setText("");
             }
-            if(!TextUtils.isEmpty(employee.getMobile())){
+            if (!TextUtils.isEmpty(employee.getMobile())) {
                 txtMobile.setText(employee.getMobile());
-            }else{
+            } else {
                 txtMobile.setText("");
             }
-            if(employee.getOutstandingDue()!=0){
-                int amount= (int) employee.getOutstandingDue();
-                txtAmount.setText("RS "+amount);
-            }else{
+            if (employee.getOutstandingDue() != 0) {
+                int amount = (int) employee.getOutstandingDue();
+                txtAmount.setText("RS " + amount);
+            } else {
                 txtAmount.setText("");
             }
 

@@ -1,6 +1,7 @@
 package com.ankuran.network;
 
 import com.ankuran.model.Employee;
+import com.ankuran.model.dao.GroupWage;
 import com.google.gson.JsonObject;
 
 import retrofit2.Call;
@@ -20,6 +21,7 @@ public interface NetworkClient {
 
     String SEGMENT_CENTER="/centres/1";
     String SEGMENT_EMPLOYEES="/employees/";
+    String SEGMENT_GROUP_WAGES="activities";
 
 
 
@@ -42,4 +44,7 @@ public interface NetworkClient {
 
     @PATCH(SEGMENT_ANKURAN_APP +SEGMENT_CENTER+SEGMENT_EMPLOYEES+"{employeeId}")
     Call<JsonObject> updateEmployee(@Path("employeeId") long employeeId,@Body Employee employee);
+
+    @POST(SEGMENT_ANKURAN_APP +SEGMENT_CENTER+SEGMENT_EMPLOYEES+SEGMENT_GROUP_WAGES)
+    Call<JsonObject> saveGroupWages(@Body GroupWage groupWage);
 }

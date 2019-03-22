@@ -1,6 +1,9 @@
 package com.ankuran.model;
 
+import com.ankuran.model.dao.DistributionEmployee;
+
 import java.io.Serializable;
+import java.util.List;
 
 import lombok.Data;
 
@@ -10,6 +13,7 @@ public class DueDetail implements Serializable {
     public String distributionType;
     public Item item;
     public Integer quantity;
-    public Integer duePerItem;
-    public Integer amount;
+    public Double duePerItem;
+    public Double amount;
+    public List<DistributionEmployee> distribution;
 }

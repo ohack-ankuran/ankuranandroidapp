@@ -1,6 +1,7 @@
 package com.ankuran.ui.activity;
 
 import android.annotation.TargetApi;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -36,7 +37,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class GroupWagesActivity extends BaseActivity implements OnRecyclerItemClickListener, View.OnClickListener {
+public class GroupWagesActivity extends BaseActivity implements OnRecyclerItemClickListener, View.OnClickListener, DialogInterface.OnClickListener {
 
     IndexFastScrollRecyclerView mRecyclerView;
     GroupWagesRecyclerViewAdapter mAdapter;
@@ -145,13 +146,15 @@ public class GroupWagesActivity extends BaseActivity implements OnRecyclerItemCl
                     transaction.replace(R.id.activityGroupWages, fragment);
                     transaction.commit();
                 } else {
-                    Snackbar snackbar = Snackbar
-                            .make(coordinatorLayout, "Select Employees to add group wages", Snackbar.LENGTH_LONG);
-
-                    snackbar.show();
+                    showInfoDialog("", "Select Employees to add group wages", this);
                 }
                 break;
         }
 
+    }
+
+  @Override
+    public void onClick(DialogInterface dialog, int which) {
+        dialog.dismiss();
     }
 }

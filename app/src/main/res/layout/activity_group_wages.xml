@@ -37,9 +37,11 @@
                     android:drawableRight="@drawable/icon_caret_right"
                     android:drawableEnd="@drawable/icon_caret_right"
                     android:layout_margin="20dp"
-                    android:background="@drawable/bg_button_shadow"
+                    android:background="@drawable/rounded_button"
                     android:text="@string/btxt_group_wage"
-                    android:layout_width="wrap_content"
+                    android:paddingRight="8dp"
+                    android:layout_gravity="right"
+                    android:layout_width="200dp"
                     android:layout_height="wrap_content" />
 
             <in.myinnos.alphabetsindexfastscrollrecycler.IndexFastScrollRecyclerView

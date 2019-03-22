@@ -199,13 +199,5 @@ public class AddItemToGroupWagesFragment extends Fragment implements AddItemToGr
         dialog.dismiss();
         Intent newWorkerIntent = new Intent(getContext(), WorkersProfileListActivity.class);
         startActivity(newWorkerIntent);
-//        clearViews();
     }
-
-//    private void clearViews() {
-//        mETName.setText("");
-//        mETHusbandName.setText("");
-//        mETHusbandId.setText("");
-//        mETPhone.setText("");
-//    }
 }

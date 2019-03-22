@@ -153,7 +153,7 @@ public class GroupWagesActivity extends BaseActivity implements OnRecyclerItemCl
 
     }
 
-    @Override
+  @Override
     public void onClick(DialogInterface dialog, int which) {
         dialog.dismiss();
     }

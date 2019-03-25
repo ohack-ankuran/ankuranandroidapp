@@ -4,12 +4,10 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.ankuran.R;
-import com.otaliastudios.cameraview.CameraView;
 
 public class CalculateWageActivity extends BaseActivity {
 
     private Button btnCapture;
-    private CameraView cameraView;
 
     @Override
     protected int getContentViewId() {

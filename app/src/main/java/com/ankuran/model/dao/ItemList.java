@@ -9,5 +9,5 @@ import lombok.Data;
 
 @Data
 public class ItemList implements Serializable {
-    List<Item> products;
+    List<Item> items;
 }

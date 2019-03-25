@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.ankuran.AppConstant;
 import com.ankuran.AppMain;
 import com.ankuran.model.Employee;
 import com.ankuran.model.dao.EmployeeList;
@@ -36,6 +37,7 @@ public class WorkersProfileListActivity extends BaseActivity implements OnRecycl
     WorkerListRecyclerViewAdapter mAdapter;
     Button mAddNewWorker,mGroupWages;
     List<Employee> employeeList;
+
 
     @Override
     protected int getContentViewId() {
@@ -90,7 +92,14 @@ public class WorkersProfileListActivity extends BaseActivity implements OnRecycl
     @Override
     public void onItemClick(View view, int position) {
         //TODO pass worker data
+
+    }
+
+    @Override
+    public void onItemClick(View view, int position, Object object) {
+        Employee currentEmployee= (Employee) object;
         Intent workerProfileIntent = new Intent(WorkersProfileListActivity.this,WorkerActivityList.class);
+        workerProfileIntent.putExtra(AppConstant.KEY_CURRENT_EMPLOYEE, currentEmployee);
         startActivity(workerProfileIntent);
     }
 
@@ -117,8 +126,6 @@ public class WorkersProfileListActivity extends BaseActivity implements OnRecycl
                     //TODO put validation check
                     Log.d("Shikha",new Gson().toJson(response.body()));
                     EmployeeList list = new Gson().fromJson(response.body(),EmployeeList.class);
-//                    employeeList.addAll(list.getEmployees());
-//                    mAdapter.notifyDataSetChanged();
                     setAdapter(list);
                 }else{
                     Log.d("Shikha","not 200"+new Gson().toJson(response));
@@ -136,7 +143,7 @@ public class WorkersProfileListActivity extends BaseActivity implements OnRecycl
 
     public void setAdapter(EmployeeList list) {
             if (mAdapter == null) {
-                mAdapter = new WorkerListRecyclerViewAdapter(employeeList,this);
+                mAdapter = new WorkerListRecyclerViewAdapter(employeeList,this,this);
                 mRecyclerView.setAdapter(mAdapter);
             } else if (list!=null && AppUtils.isValidList(list.getEmployees())) {
                     mAdapter.setEmployeeList(list.getEmployees());

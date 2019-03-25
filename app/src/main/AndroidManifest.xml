@@ -4,9 +4,8 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <!-- Start of Account Authentication related permission -->
     <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
@@ -20,32 +19,37 @@
     <uses-permission android:name="android.permission.READ_SYNC_STATS" />
 
     <application
-        android:name="com.ankuran.AppMain"
+        android:name=".AppMain"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.ankuran.ui.activity.MainActivity">
+        <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.ankuran.ui.activity.WorkersProfileListActivity"
-            android:label="@string/title_worker_list"/>
-        <activity android:name="com.ankuran.ui.activity.CalculateWageActivity" />
-        <activity android:name="com.ankuran.ui.activity.SocialReportActivity" />
-        <activity android:name="com.ankuran.ui.activity.InventoryDetailsActivity" />
-        <activity android:name="com.ankuran.ui.activity.AddNewWorker"
+        <activity
+            android:name=".ui.activity.WorkersProfileListActivity"
+            android:label="@string/title_worker_list" />
+        <activity android:name=".ui.activity.CalculateWageActivity" />
+        <activity android:name=".ui.activity.SocialReportActivity" />
+        <activity android:name=".ui.activity.InventoryDetailsActivity" />
+        <activity
+            android:name=".ui.activity.AddNewWorker"
             android:label="@string/title_add_new_worker" />
-        <activity android:name="com.ankuran.ui.activity.AddPaymentWageActivity" />
-        <activity android:name="com.ankuran.ui.activity.WorkerActivityList"
-            android:label="@string/title_worker_profile"/>
-        <activity android:name="com.ankuran.ui.activity.ItemGridViewActivity" />
-        <activity android:name="com.ankuran.ui.activity.AddNewItem"></activity>
+        <activity android:name=".ui.activity.AddPaymentWageActivity" />
+        <activity
+            android:name=".ui.activity.WorkerActivityList"
+            android:label="@string/title_worker_profile" />
+        <activity android:name=".ui.activity.ItemGridViewActivity"
+            android:label="@string/title_item_list"/>
+        <activity android:name=".ui.activity.AddNewItem"
+            android:label="@string/title_add_new_item"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -54,11 +58,11 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
 
         <!-- Start of service required TMS Account Authentication -->
-        <service android:name="com.ankuran.framework.account.AnkuranAccountAuthenticatorService">
+        <service android:name=".framework.account.AnkuranAccountAuthenticatorService">
 
             <!-- Required filter used by the system to launch our account service. -->
             <intent-filter>
@@ -84,7 +88,7 @@
         -->
 
         <provider
-            android:name="com.ankuran.framework.imagesync.AnkuranImageSyncProvider"
+            android:name=".framework.imagesync.AnkuranImageSyncProvider"
             android:authorities="com.quikr.tms.framework.imagesync"
             android:exported="false"
             android:label="@string/app_name"
@@ -95,7 +99,7 @@
       sync framework can access it.
         -->
         <service
-            android:name="com.ankuran.framework.imagesync.AnkuranImageSyncService"
+            android:name=".framework.imagesync.AnkuranImageSyncService"
             android:exported="false"
             android:process=":sync">
 
@@ -113,7 +117,7 @@
         </service>
         <!-- END of imagesyncadapter declaration -->
 
-
+        <activity android:name=".ui.activity.PayoutReportActivity"></activity>
     </application>
 
 </manifest>

@@ -69,6 +69,7 @@
             android:layout_weight="7"
             android:inputType="number"
             android:layout_width="0dp"
+            android:focusedByDefault="false"
             android:background="@drawable/bg_rounded_edittext"
             android:layout_height="wrap_content" />
 

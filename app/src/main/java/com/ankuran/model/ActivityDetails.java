@@ -5,7 +5,7 @@ import java.io.Serializable;
 import lombok.Data;
 
 @Data
-public class Activity implements Serializable {
+public class ActivityDetails implements Serializable {
     private Long id;
     private String timeCreated;
     private EmployeeActivityEnum.ActivityType type;
@@ -13,5 +13,4 @@ public class Activity implements Serializable {
     private boolean changeHistory;
     private DueDetail dueDetails;
     private PaymentDetails paymentDetails;
-    private Employee recipient;
 }

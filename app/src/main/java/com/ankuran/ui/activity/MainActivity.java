@@ -15,6 +15,7 @@ import com.ankuran.R;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener,DatePickerFragment.DatePickerDialogListener {
 
@@ -56,17 +57,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,D
         mTVInventory.setOnClickListener(this);
         mTVSocialImpact.setOnClickListener(this);
 
-        String date = "2019-03-18T00:48:05.000+0000";
-        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-mm-dd");
-        try {
-            Log.d("Shikha","Date: " + dateFormat1.parse(date));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss z");
-        Log.d("Shikha","Date: " + dateFormat.format(calendar.getTime()));
-
     }
 
     @Override
@@ -78,20 +68,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,D
                 break;
 
             case R.id.llCalculateWage:
-                Intent calculateIntent = new Intent(MainActivity.this,CalculateWageActivity.class);
+                Intent calculateIntent = new Intent(MainActivity.this,PayoutReportActivity.class);
                 startActivity(calculateIntent);
                 break;
 
 
             case R.id.llInventory:
-                Intent inventoryIntent = new Intent(MainActivity.this,InventoryDetailsActivity.class);
+                Intent inventoryIntent = new Intent(MainActivity.this,ItemGridViewActivity.class);
                 startActivity(inventoryIntent);
                 break;
 
 
             case R.id.llSocialReport:
 //                showDatePicker();
-                Intent socialReportIntent = new Intent(MainActivity.this,AddNewItem.class);
+                Intent socialReportIntent = new Intent(MainActivity.this,SocialReportActivity.class);
                 startActivity(socialReportIntent);
                 break;
         }

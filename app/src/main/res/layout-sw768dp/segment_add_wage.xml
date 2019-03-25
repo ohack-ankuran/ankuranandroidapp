@@ -88,14 +88,15 @@
             android:text="@string/txt_quantity"
             />
 
-        <EditText
-            android:id="@+id/etWageQuantity"
-            android:hint="1100"
+        <android.support.v7.widget.AppCompatSpinner
             android:layout_weight="7"
-            android:layout_width="0dp"
-            android:inputType="number"
-            android:background="@drawable/bg_rounded_edittext"
-            android:layout_height="wrap_content" />
+            android:id="@+id/npWageQuantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:prompt="@string/add_quantity_prompt"
+            android:saveEnabled="true"
+            />
+
 
 
     </LinearLayout>
@@ -114,7 +115,7 @@
             android:textSize="18sp"
             android:textColor="#0d5561"
             android:lineSpacingExtra="4sp"
-            android:text="@string/txt_amount"
+            android:text="@string/txt_amount_quantity"
             />
 
         <EditText
@@ -122,7 +123,36 @@
             android:hint="1100"
             android:layout_weight="7"
             android:layout_width="0dp"
-            android:inputType="number"
+            android:inputType="numberDecimal"
+            android:background="@drawable/bg_rounded_edittext"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#0d5561"
+            android:lineSpacingExtra="4sp"
+            android:text="@string/txt_amount"
+            />
+
+        <EditText
+            android:id="@+id/etWageFullAmount"
+            android:hint="1100"
+            android:layout_weight="7"
+            android:layout_width="0dp"
+            android:enabled="false"
+            android:inputType="numberDecimal"
             android:background="@drawable/bg_rounded_edittext"
             android:layout_height="wrap_content" />
 

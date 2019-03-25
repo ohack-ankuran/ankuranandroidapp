@@ -1,6 +1,11 @@
 package com.ankuran.model;
 
+import android.util.Log;
+
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -14,9 +19,4 @@ public class Employee implements Serializable {
     public EmployeeHusband husband;
     public Integer centre;
     public float outstandingDue;
-
-    public Employee() {
-        //TODO check timeOfJoining format and set it there.
-        this.timeOfJoining="2019-01-12T00:15:21.030Z";
-    }
 }

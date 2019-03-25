@@ -1,5 +1,6 @@
 package com.ankuran.ui.adaptar;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ public class WorkerListRecyclerViewAdapter extends RecyclerView.Adapter<WorkerLi
     private List<Employee> employeeList;
     OnRecyclerItemClickListener onRecyclerItemClickListener;
     private ArrayList<Integer> mSectionPositions;
+    private Context mContext;
 
 
     public void setEmployeeList(List<Employee> employeeList) {
@@ -46,7 +48,8 @@ public class WorkerListRecyclerViewAdapter extends RecyclerView.Adapter<WorkerLi
         return sections.toArray(new String[0]);
     }
 
-    public WorkerListRecyclerViewAdapter(List<Employee> employeeList, OnRecyclerItemClickListener onRecyclerItemClickListener) {
+    public WorkerListRecyclerViewAdapter(List<Employee> employeeList, OnRecyclerItemClickListener onRecyclerItemClickListener,Context context) {
+        this.mContext=context;
         this.employeeList = employeeList;
         this.onRecyclerItemClickListener=onRecyclerItemClickListener;
     }
@@ -76,8 +79,7 @@ public class WorkerListRecyclerViewAdapter extends RecyclerView.Adapter<WorkerLi
         return employeeList.size();
     }
 
-
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         //TODo add imageview for profile screen
         TextView txtName;
         TextView txtMobile;
@@ -100,17 +102,12 @@ public class WorkerListRecyclerViewAdapter extends RecyclerView.Adapter<WorkerLi
             }else{
                 txtMobile.setText("");
             }
-            if(employee.getOutstandingDue()!=0){
-                int amount= (int) employee.getOutstandingDue();
-                txtAmount.setText("RS "+amount);
-            }else{
-                txtAmount.setText("");
-            }
+            txtAmount.setText(mContext.getString(R.string.Rs)+employee.getOutstandingDue());
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onItemClick(v, position);
+                    listener.onItemClick(v, position,employee);
                 }
             });
         }

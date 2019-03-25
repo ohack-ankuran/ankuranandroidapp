@@ -9,16 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.ankuran.R;
 import com.ankuran.model.Activity;
 import com.ankuran.ui.adaptar.listener.OnRecyclerItemClickListener;
-import com.ankuran.R;
 import com.ankuran.util.AppUtils;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
-public class ActivityListRecyclerViewAdapter extends RecyclerView.Adapter<ActivityListRecyclerViewAdapter.ViewHolder> {
+public class PayoutActivityListRecyclerViewAdapter extends RecyclerView.Adapter<PayoutActivityListRecyclerViewAdapter.ViewHolder> {
 
     private List<Activity> activityList;
     OnRecyclerItemClickListener onRecyclerItemClickListener;
@@ -30,7 +28,7 @@ public class ActivityListRecyclerViewAdapter extends RecyclerView.Adapter<Activi
         this.activityList = activityList;
     }
 
-    public ActivityListRecyclerViewAdapter(List<Activity> activityList, OnRecyclerItemClickListener onRecyclerItemClickListener) {
+    public PayoutActivityListRecyclerViewAdapter(List<Activity> activityList, OnRecyclerItemClickListener onRecyclerItemClickListener) {
         this.activityList = activityList;
         this.onRecyclerItemClickListener=onRecyclerItemClickListener;
 
@@ -38,15 +36,15 @@ public class ActivityListRecyclerViewAdapter extends RecyclerView.Adapter<Activi
 
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PayoutActivityListRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.row_activity_list, parent, false);
 
-        return new ViewHolder(itemView);
+        return new PayoutActivityListRecyclerViewAdapter.ViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(PayoutActivityListRecyclerViewAdapter.ViewHolder holder, int position) {
         Activity activity = activityList.get(position);
         holder.bind(activity,onRecyclerItemClickListener,position);
     }
@@ -69,23 +67,16 @@ public class ActivityListRecyclerViewAdapter extends RecyclerView.Adapter<Activi
         public void bind(final Activity activity, final OnRecyclerItemClickListener listener, final int position) {
             //TODO format date and handle null pointers
             if(!TextUtils.isEmpty(activity.getTimeCreated()))
-                    txtDate.setText(AppUtils.getReadableDate(activity.getTimeCreated()));
+                txtDate.setText(AppUtils.getReadableDate(activity.getTimeCreated()));
 
             if(activity.getPaymentDetails()!=null){
                 txtDueAmount.setText("RS "+activity.getPaymentDetails().getAmount());
                 txtDueAmount.setTextColor(Color.parseColor("#009688"));
                 txtQuantity.setVisibility(View.INVISIBLE);
-                txtItem.setText("PAYOUT");
+//                txtItem.setText("PAYOUT");
             }
-            if(activity.getDueDetails()!=null) {
-                if(activity.getDueDetails().getItem()!=null)
-                    txtItem.setText(activity.getDueDetails().getItem().getName());
-                else{
-                    txtItem.setVisibility(View.INVISIBLE);
-                }
-                txtQuantity.setText(activity.getDueDetails().getQuantity().toString());
-                txtDueAmount.setText("RS "+activity.getDueDetails().getAmount().toString());
-                txtDueAmount.setTextColor(Color.parseColor("#c64319"));
+            if(activity.getRecipient()!=null) {
+                txtItem.setText(activity.getRecipient().getFullName());
             }
 
             itemView.setOnClickListener(new View.OnClickListener() {

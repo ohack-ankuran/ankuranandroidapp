@@ -36,6 +36,7 @@ public class AddNewWorker extends BaseActivity implements View.OnClickListener,D
     EditText mETHusbandName;
     EditText mETHusbandId;
     EditText mETPhone;
+    EditText mETOutstandingAmount;
     Button mSave;
     Context mContext;
     Intent intent;
@@ -57,6 +58,7 @@ public class AddNewWorker extends BaseActivity implements View.OnClickListener,D
         mETHusbandName=findViewById(R.id.etHusbandName);
         mETHusbandId=findViewById(R.id.etHusbandId);
         mETPhone=findViewById(R.id.etPhone);
+        mETOutstandingAmount=findViewById(R.id.etOutstantingAmount);
         mSave=findViewById(R.id.btnSave);
         mSave.setOnClickListener(this);
 
@@ -80,6 +82,8 @@ public class AddNewWorker extends BaseActivity implements View.OnClickListener,D
                  mETHusbandId.setText(employee.getHusband().getBslEmployeeId());
             if(!TextUtils.isEmpty(employee.getMobile()))
                 mETPhone.setText(employee.getMobile());
+
+            mETOutstandingAmount.setText(String.valueOf(employee.getOutstandingDue()));
         }
     }
 
@@ -114,8 +118,12 @@ public class AddNewWorker extends BaseActivity implements View.OnClickListener,D
             String husbandId= mETHusbandId.getText() != null ? mETHusbandId.getText().toString().trim() : "";
             if(!TextUtils.isEmpty(husbandId))
                 husband.setBslEmployeeId(husbandId);
+            String amount= mETOutstandingAmount.getText() != null ? mETOutstandingAmount.getText().toString().trim() : "";
+            if(!TextUtils.isEmpty(amount))
+                employee.setOutstandingDue(Float.valueOf(amount));
 
             employee.setHusband(husband);
+            employee.setTimeOfJoining(AppUtils.getCurrentDate());
 
             if (!AppUtils.isConnectedToInternet()) {
                 showToast(getString(R.string.network_error));

@@ -1,7 +1,9 @@
 package com.ankuran.ui.adaptar;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import com.ankuran.model.Item;
 import com.ankuran.ui.adaptar.listener.OnRecyclerItemClickListener;
 import com.ankuran.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -19,9 +22,15 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
     private List<Item> itemList;
     OnRecyclerItemClickListener onRecyclerItemClickListener;
 
+
     public ItemRecyclerViewAdapter(List<Item> itemList, OnRecyclerItemClickListener onRecyclerItemClickListener) {
         this.itemList = itemList;
         this.onRecyclerItemClickListener = onRecyclerItemClickListener;
+    }
+
+
+    public void setItemList(List<Item> itemList) {
+        this.itemList = itemList;
     }
 
     @NonNull
@@ -58,6 +67,13 @@ public class ItemRecyclerViewAdapter extends RecyclerView.Adapter<ItemRecyclerVi
         public void bind(final Item item, final OnRecyclerItemClickListener listener, final int position) {
             //TODO add image using picasso
             itemName.setText(item.getName());
+            if(!TextUtils.isEmpty(item.getPicture()))
+            {
+
+                Picasso.get().load(item.getPicture())
+                        .into(itemImage);
+
+            }
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     listener.onItemClick(v,position);

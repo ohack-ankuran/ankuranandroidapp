@@ -27,4 +27,9 @@
     <string name="btxt_view">View</string>
     <string name="txt_amount_quantity">Amount/pc</string>
     <string name="add_quantity_prompt">Select Quantity</string>
+    <string name="txt_outstanding_amt">Due Amount</string>
+    <string name="btxt_new_item">Add Item</string>
+    <string name="txt_type">Item Type</string>
+    <string name="title_item_list">Item List</string>
+    <string name="title_add_new_item">Add New Item</string>
 </resources>

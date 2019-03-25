@@ -3,9 +3,14 @@ package com.ankuran.util;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 
 import com.ankuran.AppMain;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class AppUtils {
@@ -27,5 +32,30 @@ public class AppUtils {
             isNetworkConnected = networkInfo.isConnected();
         }
         return isNetworkConnected;
+    }
+
+
+    public static String getCurrentDate(){
+        Date currentTime = Calendar.getInstance().getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+        String currentDate=dateFormat.format(currentTime);
+        return currentDate;
+    }
+
+    public static String getReadableDate(String dateInString){
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+        SimpleDateFormat formatterOut = new SimpleDateFormat("dd MMM yyyy");
+        try {
+
+            Date date = formatter.parse(dateInString);
+            String readableDate=formatterOut.format(date);
+            return  readableDate;
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        //TODO change this
+        return "21 Mar 2019";
     }
 }

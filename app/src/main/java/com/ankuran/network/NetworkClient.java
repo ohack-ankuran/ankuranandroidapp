@@ -1,6 +1,8 @@
 package com.ankuran.network;
 
+import com.ankuran.model.ActivityDetails;
 import com.ankuran.model.Employee;
+import com.ankuran.model.Item;
 import com.google.gson.JsonObject;
 
 import retrofit2.Call;
@@ -9,6 +11,7 @@ import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface NetworkClient {
 
@@ -20,7 +23,17 @@ public interface NetworkClient {
 
     String SEGMENT_CENTER="/centres/1";
     String SEGMENT_EMPLOYEES="/employees/";
+    String SEGMENT_ACTIVITIES="/activities";
 
+
+    String SEGMENT_CATALOGUE=" /catalogue";
+    String SEGMENT_PRRODUCT="/products";
+    String SEGMENT_PAYOUT_ACTIVITY="/payment-activities";
+
+
+
+    @GET(SEGMENT_ANKURAN_APP +SEGMENT_CENTER+SEGMENT_EMPLOYEES+SEGMENT_PAYOUT_ACTIVITY)
+    Call<JsonObject> allPayout(@Query("lowerTimeCreated") String lowerTimeCreated,@Query("upperTimeCreated") String upperTimeCreated);
 
 
 
@@ -31,7 +44,11 @@ public interface NetworkClient {
 //    @POST(SEGMENT_ANKURAN_APP + SEGMENT_POSTS)
 //    Call<JsonObject> posts(@Body JsonObject data);
 
+    @GET(SEGMENT_ANKURAN_APP +SEGMENT_CATALOGUE+SEGMENT_PRRODUCT)
+    Call<JsonObject> allAllProducts();
 
+    @POST(SEGMENT_ANKURAN_APP +SEGMENT_CATALOGUE+SEGMENT_PRRODUCT)
+    Call<JsonObject> addItem(@Body Item item);
 
     @GET(SEGMENT_ANKURAN_APP +SEGMENT_CENTER+SEGMENT_EMPLOYEES)
     Call<JsonObject> allEmployee();
@@ -42,4 +59,11 @@ public interface NetworkClient {
 
     @PATCH(SEGMENT_ANKURAN_APP +SEGMENT_CENTER+SEGMENT_EMPLOYEES+"{employeeId}")
     Call<JsonObject> updateEmployee(@Path("employeeId") long employeeId,@Body Employee employee);
+
+    @POST(SEGMENT_ANKURAN_APP +SEGMENT_CENTER+SEGMENT_EMPLOYEES+"{employeeId}"+SEGMENT_ACTIVITIES)
+    Call<JsonObject> addActivity(@Path("employeeId") long employeeId,@Body ActivityDetails activityDetails);
+
+
+    @GET(SEGMENT_ANKURAN_APP +SEGMENT_CENTER+SEGMENT_EMPLOYEES+"{employeeId}"+SEGMENT_ACTIVITIES)
+    Call<JsonObject> getAllActivities(@Path("employeeId") long employeeId,@Query("lowerTimeCreated") String lowerTimeCreated,@Query("upperTimeCreated") String upperTimeCreated,@Query("types") String types);
 }

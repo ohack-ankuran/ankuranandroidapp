@@ -10,6 +10,6 @@ public class DueDetail implements Serializable {
     public String distributionType;
     public Item item;
     public Integer quantity;
-    public Integer duePerItem;
-    public Integer amount;
+    public Double duePerItem;
+    public Double amount;
 }

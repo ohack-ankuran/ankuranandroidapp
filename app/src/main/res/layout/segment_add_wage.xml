@@ -47,6 +47,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:visibility="gone"
         android:layout_marginTop="15dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -89,7 +90,7 @@
             />
 
         <android.support.v7.widget.AppCompatSpinner
-            android:layout_weight="7"
+            android:layout_weight="6"
             android:id="@+id/npWageQuantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -120,10 +121,11 @@
 
         <EditText
             android:id="@+id/etWageAmount"
-            android:hint="1100"
+            android:hint="110"
             android:layout_weight="7"
             android:layout_width="0dp"
             android:inputType="numberDecimal"
+            android:focusedByDefault="false"
             android:background="@drawable/bg_rounded_edittext"
             android:layout_height="wrap_content" />
 

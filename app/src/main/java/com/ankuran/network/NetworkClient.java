@@ -3,6 +3,7 @@ package com.ankuran.network;
 import com.ankuran.model.ActivityDetails;
 import com.ankuran.model.Employee;
 import com.ankuran.model.Item;
+import com.ankuran.model.Settlement;
 import com.ankuran.model.dao.GroupWage;
 import com.google.gson.JsonObject;
 
@@ -35,6 +36,8 @@ public interface NetworkClient {
     String SEGMENT_SETTLEMENT="/settlements";
 
 
+    @POST(SEGMENT_ANKURAN_APP +SEGMENT_CENTER+SEGMENT_SETTLEMENT)
+    Call<JsonObject> addSettlement(@Body Settlement settlement);
 
 
 

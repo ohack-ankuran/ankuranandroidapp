@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.ankuran.R;
 import com.ankuran.ui.adaptar.SettlementTabAdapter;
 import com.ankuran.ui.fragment.PayoutReportFragment;
+import com.ankuran.ui.fragment.SettlementReportFragment;
 
 public class PayoutReportActivity extends BaseActivity  {
 
@@ -32,7 +33,7 @@ public class PayoutReportActivity extends BaseActivity  {
         tabLayout = findViewById(R.id.tabLayout);
         mTabAdaptor = new SettlementTabAdapter(getSupportFragmentManager());
         mTabAdaptor.addFragment(new PayoutReportFragment(), "Payout");
-        mTabAdaptor.addFragment(new PayoutReportFragment(), "Settlement");
+        mTabAdaptor.addFragment(new SettlementReportFragment(), "Settlement");
         viewPager.setAdapter(mTabAdaptor);
         tabLayout.setupWithViewPager(viewPager);
 

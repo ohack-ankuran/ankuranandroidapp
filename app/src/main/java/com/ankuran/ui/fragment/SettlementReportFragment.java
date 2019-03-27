@@ -1,6 +1,7 @@
 package com.ankuran.ui.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,12 +12,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.ankuran.AppMain;
 import com.ankuran.R;
 import com.ankuran.model.Activity;
+import com.ankuran.model.Settlement;
+import com.ankuran.model.SettlementList;
 import com.ankuran.model.dao.ActivityList;
+import com.ankuran.ui.activity.AddNewSettlementActivity;
+import com.ankuran.ui.activity.MainActivity;
+import com.ankuran.ui.activity.WorkersProfileListActivity;
 import com.ankuran.ui.adaptar.PayoutActivityListRecyclerViewAdapter;
+import com.ankuran.ui.adaptar.SettlementListRecyclerViewAdapter;
 import com.ankuran.ui.adaptar.listener.OnRecyclerItemClickListener;
 import com.ankuran.util.AppUtils;
 import com.ankuran.util.LogUtils;
@@ -35,13 +43,15 @@ import retrofit2.Response;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SettlementReportFragment extends Fragment implements OnRecyclerItemClickListener {
+public class SettlementReportFragment extends Fragment implements OnRecyclerItemClickListener,View.OnClickListener {
 
     RecyclerView mRecyclerView;
-    PayoutActivityListRecyclerViewAdapter mAdapter;
-    private List<Activity> activityList;
+    SettlementListRecyclerViewAdapter mAdapter;
+    private List<Settlement> settlementList;
     View mView;
     protected String TAG=SettlementReportFragment.class.getSimpleName();
+
+    Button mAddNewSettlement;
 
 
     @Override
@@ -58,14 +68,22 @@ public class SettlementReportFragment extends Fragment implements OnRecyclerItem
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        getAllSettlement();
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initUI();
     }
 
     private void initUI() {
-        activityList = new ArrayList<>();
-        mRecyclerView = mView.findViewById(R.id.payoutActivityRecyclerView);
+        settlementList = new ArrayList<>();
+        mRecyclerView = mView.findViewById(R.id.settlementRecyclerView);
+        mAddNewSettlement=mView.findViewById(R.id.btnAddNewSettlement);
+        mAddNewSettlement.setOnClickListener(this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -83,8 +101,8 @@ public class SettlementReportFragment extends Fragment implements OnRecyclerItem
                     //TODO put validation check
                     Log.d("getAllActivities",new Gson().toJson(response.body()));
 
-//                    ActivityList list = new Gson().fromJson(response.body(),ActivityList.class);
-//                    setAdapter(list);
+                    SettlementList list = new Gson().fromJson(response.body(),SettlementList.class);
+                    setAdapter(list);
                 }else{
                     Log.d("Shikha","not 200"+new Gson().toJson(response));
                 }
@@ -99,12 +117,12 @@ public class SettlementReportFragment extends Fragment implements OnRecyclerItem
 
     }
 
-    public void setAdapter(ActivityList list) {
+    public void setAdapter(SettlementList list) {
         if (mAdapter == null) {
-            mAdapter = new PayoutActivityListRecyclerViewAdapter(activityList,this);
+            mAdapter = new SettlementListRecyclerViewAdapter(settlementList,this);
             mRecyclerView.setAdapter(mAdapter);
-        } else if (list!=null && AppUtils.isValidList(list.getActivities())) {
-            mAdapter.setActivityList(list.getActivities());
+        } else if (list!=null && AppUtils.isValidList(list.getSettlements())) {
+            mAdapter.setSettlementList(list.getSettlements());
             mAdapter.notifyDataSetChanged();
 
         }
@@ -119,4 +137,18 @@ public class SettlementReportFragment extends Fragment implements OnRecyclerItem
     public void onItemClick(View view, int position, Object object) {
 
     }
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.btnAddNewSettlement:
+                proceedNext();
+                break;
+        }
+    }
+
+    private void proceedNext() {
+        Intent intent = new Intent(getActivity(),AddNewSettlementActivity.class);
+        startActivity(intent);
+    }
+
 }

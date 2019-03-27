@@ -115,8 +115,10 @@
         </service>
         <!-- END of imagesyncadapter declaration -->
 
-        <activity android:name=".ui.activity.PayoutReportActivity" />
-        <activity android:name=".ui.activity.AddNewSettlementActivity"></activity>
+        <activity android:name=".ui.activity.PayoutReportActivity"
+            android:label="@string/title_report" />
+        <activity android:name=".ui.activity.AddNewSettlementActivity"
+            android:label="@string/title_add_settlement" ></activity>
     </application>
 
 </manifest>

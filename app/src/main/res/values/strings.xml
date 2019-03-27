@@ -4,12 +4,16 @@
     <string name="txt_phone">Phone</string>
     <string name="txt_husband_name">Husband’s Name</string>
     <string name="txt_husband_id">Husband’s Id</string>
+    <string name="txt_categories">Categories</string>
+    <string name="txt_labels">Labels</string>
     <string name="btxt_save">Save</string>
+    <string name="btxt_apply">Apply</string>
     <string name="txt_add_payment">ADD PAYMENT</string>
     <string name="txt_add_wage">ADD WAGES</string>
     <string name="txt_date">Date</string>
     <string name="txt_payment">Payment</string>
     <string name="txt_item">Item</string>
+    <string name="txt_items">Items</string>
     <string name="txt_quantity">Quantity</string>
     <string name="txt_amount">Amount</string>
     <string name="btxt_group_wage">Group Wages</string>

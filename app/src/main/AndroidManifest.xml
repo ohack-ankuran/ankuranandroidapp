@@ -48,6 +48,7 @@
             android:label="@string/title_worker_profile" />
         <activity android:name=".ui.activity.ItemGridViewActivity" />
         <activity android:name=".ui.activity.AddNewItem" />
+        <activity android:name=".ui.activity.GroupWagesActivity"/>
 
         <provider
             android:name="android.support.v4.content.FileProvider"

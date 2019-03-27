@@ -11,4 +11,5 @@ public class PaymentDetails implements Serializable {
     private String id;
     private String note;
     private Double amount;
+    private Employee recipient;
 }

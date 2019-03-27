@@ -7,17 +7,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_gravity="center"
-        android:id="@+id/txtName"
-        android:layout_width="wrap_content"
+    <include
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:textColor="@color/headerBrown"
-        android:layout_marginBottom="5dp"
-        android:text="@string/btxt_new_settlement"
-        />
-
+        layout="@layout/segment_item_details1" />
 
     <ScrollView
 
@@ -27,34 +21,19 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <LinearLayout
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_weight="3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:textColor="#0d5561"
-                    android:lineSpacingExtra="4sp"
-                    android:text="@string/txt_date"
-                    />
-
-                <EditText
-                    android:id="@+id/etDate"
-                    android:text="11 Jan 2019"
-                    android:layout_weight="7"
-                    android:layout_width="0dp"
-                    android:enabled="false"
-                    android:background="@android:color/transparent"
-                    android:textColor="@color/addWorkText"
-                    android:layout_height="wrap_content" />
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/txtName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:textColor="@color/headerBrown"
+                android:layout_marginBottom="5dp"
+                android:text="@string/btxt_remove_product"
+                />
 
 
-            </LinearLayout>
+
 
             <LinearLayout
                 android:visibility="gone"
@@ -96,18 +75,22 @@
                     android:textSize="18sp"
                     android:textColor="#0d5561"
                     android:lineSpacingExtra="4sp"
-                    android:text="@string/txt_correction"
+                    android:text="@string/txt_quantity"
                     />
 
-                <android.support.v7.widget.AppCompatCheckBox
-                    android:id="@+id/cbCorrection"
-                    android:layout_weight="7"
-                    android:layout_marginLeft="5dp"
+                <android.support.v7.widget.AppCompatSpinner
+                    android:layout_weight="6"
+                    android:id="@+id/npRemoveQuantity"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:prompt="@string/add_quantity_prompt"
+                    android:saveEnabled="true"
+                    />
+
 
 
             </LinearLayout>
+
 
 
 
@@ -125,7 +108,7 @@
                     android:textSize="18sp"
                     android:textColor="#0d5561"
                     android:lineSpacingExtra="4sp"
-                    android:text="@string/txt_amount"
+                    android:text="@string/txt_price_per_unit"
                     />
 
                 <EditText
@@ -133,13 +116,93 @@
                     android:hint="1100"
                     android:layout_weight="7"
                     android:layout_width="0dp"
+
                     android:inputType="numberDecimal"
                     android:background="@drawable/bg_rounded_edittext"
                     android:layout_height="wrap_content" />
 
 
+
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="#0d5561"
+                    android:lineSpacingExtra="4sp"
+                    android:text="@string/txt_total_amount"
+                    />
+
+                <EditText
+                    android:id="@+id/etFullAmount"
+                    android:hint="1100"
+                    android:layout_weight="7"
+                    android:layout_width="0dp"
+                    android:enabled="false"
+                    android:inputType="numberDecimal"
+                    android:background="@drawable/bg_rounded_edittext"
+                    android:layout_height="wrap_content" />
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="#0d5561"
+                    android:lineSpacingExtra="4sp"
+                    android:text="@string/txt_intent"
+                    />
+
+
+                <LinearLayout
+                    android:layout_weight="7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <RadioGroup
+                        android:id="@+id/rgRemoveReason"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:id="@+id/rbSale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="@string/rtxt_sale"
+                            />
+                        <RadioButton
+                            android:id="@+id/rbStockReversal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rtxt_stock_transfer"/>
+
+                        <RadioButton
+                            android:id="@+id/rbOthers"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rtxt_others"/>
+                    </RadioGroup>
+
+
+                </LinearLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_marginTop="15dp"
@@ -176,11 +239,11 @@
             <Button
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:id="@+id/btnAdSettlement"
+                android:id="@+id/btnRemoveConfirm"
                 android:layout_gravity="center"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
-                android:text="@string/btxt_new_settlement"
+                android:text="@string/btxt_confirm"
                 android:textSize="20sp"
                 android:textColor="@android:color/white"
                 android:background="@drawable/primary_button_bg"
@@ -188,6 +251,7 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
+
 
 
 </LinearLayout>

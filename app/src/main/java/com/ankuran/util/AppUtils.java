@@ -6,6 +6,7 @@ import android.net.NetworkInfo;
 import android.util.Log;
 
 import com.ankuran.AppMain;
+import com.ankuran.model.ItemHistoryEnum;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -57,5 +58,19 @@ public class AppUtils {
         }
         //TODO change this
         return "21 Mar 2019";
+    }
+
+    public static ItemHistoryEnum.HistoryReason getHistoryReason(String reason){
+        if(reason.equalsIgnoreCase("New Production")){
+            return ItemHistoryEnum.HistoryReason.STOCK_NEW;
+            }else if(reason.equalsIgnoreCase("Stock Transfer Reversal")){
+            return ItemHistoryEnum.HistoryReason.STOCK_TRANSFER_REVERSAL;
+        }else if(reason.equalsIgnoreCase("Stock Transfer")){
+            return ItemHistoryEnum.HistoryReason.STOCK_TRANSFER;
+        }else if(reason.equalsIgnoreCase("Sale")){
+            return ItemHistoryEnum.HistoryReason.SALE;
+        }else{
+            return ItemHistoryEnum.HistoryReason.OTHERS;
+        }
     }
 }

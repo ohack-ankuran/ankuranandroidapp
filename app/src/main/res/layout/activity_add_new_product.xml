@@ -1,31 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".AddNewProduct">
+<LinearLayout
+android:id="@+id/llAddWageContainer"
+android:padding="20dp"
+android:visibility="visible"
+android:orientation="vertical"
+xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+android:layout_height="match_parent">
 
-    <RadioGroup
-        android:layout_width="wrap_content"
+    <include
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/segment_item_details1" />
+
+    <ScrollView
+
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <RadioButton
-            android:id="@+id/rbNewProduction"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/rtxt_new_production"
-            />
-        <RadioButton
-            android:id="@+id/rbStockReversal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/rtxt_stock_transfer_reversal"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/txtName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25sp"
+                android:textColor="@color/headerBrown"
+                android:layout_marginBottom="5dp"
+                android:text="@string/btxt_add_product"
+                />
 
-        <RadioButton
-            android:id="@+id/rbOthers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/rtxt_others"/>
-    </RadioGroup>
+
+
+            <LinearLayout
+                android:visibility="gone"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="#0d5561"
+                    android:lineSpacingExtra="4sp"
+                    android:text="@string/txt_item"
+                    />
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:layout_weight="7"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"></android.support.v7.widget.AppCompatSpinner>
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="#0d5561"
+                    android:lineSpacingExtra="4sp"
+                    android:text="@string/txt_quantity"
+                    />
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:layout_weight="6"
+                    android:id="@+id/npAddQuantity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:prompt="@string/add_quantity_prompt"
+                    android:saveEnabled="true"
+                    />
+
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="#0d5561"
+                    android:lineSpacingExtra="4sp"
+                    android:text="@string/txt_intent"
+                    />
+
+
+                <LinearLayout
+                    android:layout_weight="7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <RadioGroup
+                        android:id="@+id/rgReason"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:id="@+id/rbNewProduction"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="@string/rtxt_new_production"
+                            />
+                        <RadioButton
+                            android:id="@+id/rbStockReversal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rtxt_stock_transfer_reversal"/>
+
+                        <RadioButton
+                            android:id="@+id/rbOthers"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/rtxt_others"/>
+                    </RadioGroup>
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_weight="3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:textColor="#0d5561"
+                    android:lineSpacingExtra="4sp"
+                    android:text="@string/txt_note"
+                    />
+
+                <EditText
+                    android:id="@+id/etNote"
+                    android:hint="Add any special notes here"
+                    android:layout_weight="7"
+                    android:layout_width="0dp"
+                    android:inputType="textMultiLine"
+                    android:minLines="3"
+                    android:maxLength="100"
+                    android:background="@drawable/bg_rounded_edittext"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+
+
+            <Button
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:id="@+id/btnAddConfirm"
+                android:layout_gravity="center"
+                android:padding="20dp"
+                android:paddingBottom="20dp"
+                android:text="@string/btxt_confirm"
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+                android:background="@drawable/primary_button_bg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+
+
 
 </LinearLayout>

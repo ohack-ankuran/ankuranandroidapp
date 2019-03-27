@@ -73,10 +73,10 @@ public class PayoutActivityListRecyclerViewAdapter extends RecyclerView.Adapter<
                 txtDueAmount.setText("RS "+activity.getPaymentDetails().getAmount());
                 txtDueAmount.setTextColor(Color.parseColor("#009688"));
                 txtQuantity.setVisibility(View.INVISIBLE);
-//                txtItem.setText("PAYOUT");
-            }
-            if(activity.getRecipient()!=null) {
-                txtItem.setText(activity.getRecipient().getFullName());
+                if(activity.getPaymentDetails().getRecipient()!=null)
+                    txtItem.setText(activity.getPaymentDetails().getRecipient().getFullName());
+                else
+                    txtItem.setVisibility(View.INVISIBLE);
             }
 
             itemView.setOnClickListener(new View.OnClickListener() {

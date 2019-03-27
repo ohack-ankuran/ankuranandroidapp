@@ -48,7 +48,7 @@ public class AddNewSettlementActivity extends BaseActivity implements View.OnCli
     private void initUI() {
         mDate=findViewById(R.id.etDate);
         mAmount=findViewById(R.id.etAmount);
-        mNotes=findViewById(R.id.etName);
+        mNotes=findViewById(R.id.etNote);
         mCBCorrection=findViewById(R.id.cbCorrection);
         mSave=findViewById(R.id.btnAdSettlement);
         mSave.setOnClickListener(this);
@@ -101,7 +101,7 @@ public class AddNewSettlementActivity extends BaseActivity implements View.OnCli
     private void processServerResponse(Response<JsonObject> response, String operation) {
         if(response.code() == HttpsURLConnection.HTTP_OK ||response.code() == HttpsURLConnection.HTTP_CREATED||response.code() == HttpsURLConnection.HTTP_ACCEPTED){
             Log.d("Shikha",new Gson().toJson(response.body()));
-            showInfoDialog("", "Item added successfully!!",this);
+            showInfoDialog("", "Settlement added successfully!!",this);
 
         }else{
             Log.d("Shikha","not 200"+new Gson().toJson(response));

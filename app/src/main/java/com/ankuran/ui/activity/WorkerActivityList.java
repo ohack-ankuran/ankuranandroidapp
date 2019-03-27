@@ -213,13 +213,13 @@ public class WorkerActivityList extends BaseActivity implements OnRecyclerItemCl
 
 
             case R.id.llStartDateContainer:
-                showDatePicker();
+                showDatePicker(this);
                 //TODO end date validation
                 break;
 
 
             case R.id.llEndDateContainer:
-                showDatePicker();
+                showDatePicker(this);
                 break;
 
         }

@@ -19,7 +19,7 @@
 
         <Button
             android:id="@+id/btnAdd"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="100dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:background="@drawable/rounded_button"
@@ -33,7 +33,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="100dp"
             android:textColor="@color/colorRed"
             android:background="@drawable/rounded_button_red"
             android:text="@string/btxt_delete"

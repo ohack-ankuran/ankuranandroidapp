@@ -3,6 +3,7 @@ package com.ankuran.network;
 import com.ankuran.model.ActivityDetails;
 import com.ankuran.model.Employee;
 import com.ankuran.model.Item;
+import com.ankuran.model.ItemHistory;
 import com.ankuran.model.Settlement;
 import com.ankuran.model.dao.GroupWage;
 import com.google.gson.JsonObject;
@@ -31,9 +32,10 @@ public interface NetworkClient {
 
     String SEGMENT_CATALOGUE=" /catalogue";
     String SEGMENT_PRRODUCT="/products";
-    String SEGMENT_PAYOUT_ACTIVITY="/payment-activities";
+    String SEGMENT_PAYOUT_ACTIVITY="payment-activities";
 
     String SEGMENT_SETTLEMENT="/settlements";
+    String SEGMENT_HISTORY="/history";
 
 
     @POST(SEGMENT_ANKURAN_APP +SEGMENT_CENTER+SEGMENT_SETTLEMENT)
@@ -43,6 +45,18 @@ public interface NetworkClient {
 
     @GET(SEGMENT_ANKURAN_APP +SEGMENT_CENTER+SEGMENT_EMPLOYEES+SEGMENT_PAYOUT_ACTIVITY)
     Call<JsonObject> allPayout(@Query("lowerTimeCreated") String lowerTimeCreated,@Query("upperTimeCreated") String upperTimeCreated);
+
+
+    @GET(SEGMENT_ANKURAN_APP +SEGMENT_CATALOGUE+SEGMENT_PRRODUCT+"/"+"{itemId}"+SEGMENT_HISTORY)
+    Call<JsonObject> getItemHistory(@Path("itemId") long itemId,@Query("lowerTimeCreated") String lowerTimeCreated,@Query("upperTimeCreated") String upperTimeCreated);
+
+
+    @POST(SEGMENT_ANKURAN_APP +SEGMENT_CATALOGUE+SEGMENT_PRRODUCT+"/"+"{itemId}"+SEGMENT_HISTORY)
+    Call<JsonObject> addHistory(@Path("itemId") long itemId, @Body ItemHistory history);
+
+
+    @GET(SEGMENT_ANKURAN_APP +SEGMENT_CATALOGUE+SEGMENT_PRRODUCT+"/"+"{itemId}")
+    Call<JsonObject> getProductByID(@Path("itemId") long itemId);
 
 
 
@@ -63,7 +77,7 @@ public interface NetworkClient {
     Call<JsonObject> allEmployee();
 
     @GET(SEGMENT_ANKURAN_APP +SEGMENT_CENTER+SEGMENT_SETTLEMENT)
-    Call<JsonObject> allSettlement();
+    Call<JsonObject> allSettlement(@Query("lowerTimeCreated") String lowerTimeCreated,@Query("upperTimeCreated") String upperTimeCreated);
 
     @POST(SEGMENT_ANKURAN_APP +SEGMENT_CENTER+SEGMENT_EMPLOYEES)
     Call<JsonObject> addEmployee(@Body Employee employee);

@@ -70,8 +70,8 @@ public class SettlementListRecyclerViewAdapter extends RecyclerView.Adapter<Sett
                 txtDate.setText(AppUtils.getReadableDate(settlement.getTimeCreated()));
             txtDueAmount.setText("RS "+settlement.getAmount());
             txtDueAmount.setTextColor(Color.parseColor("#009688"));
-            txtItem.setText("RS "+settlement.getAmountBefore());
-            txtQuantity.setText("RS "+settlement.getAmountAfter());
+            txtItem.setVisibility(View.INVISIBLE);
+            txtQuantity.setVisibility(View.INVISIBLE);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {

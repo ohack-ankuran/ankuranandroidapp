@@ -161,8 +161,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
 
-    public void showDatePicker() {
+    public void showDatePicker(DatePickerFragment.DatePickerDialogListener dialogListener) {
         DialogFragment newFragment = new DatePickerFragment();
+        ((DatePickerFragment) newFragment).setListener(dialogListener);
         newFragment.show(getSupportFragmentManager(), "date picker");
     }
 
@@ -182,6 +183,16 @@ public abstract class BaseActivity extends AppCompatActivity {
                 .setTitle(title)
                 .setMessage(msg)
                 .setPositiveButton("Ok", listener).show();
+    }
+
+    public void showProgressDialog() {
+        mProgressDialog = ProgressDialog.show(this, "Please wait ...", "Loading...", true);
+        mProgressDialog.setCancelable(false);
+    }
+
+    public void hideProgressDialog() {
+        if (mProgressDialog != null)
+            mProgressDialog.dismiss();
     }
 
 }

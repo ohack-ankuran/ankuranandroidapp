@@ -13,5 +13,5 @@ public class Activity implements Serializable {
     private boolean changeHistory;
     private DueDetail dueDetails;
     private PaymentDetails paymentDetails;
-    private Employee recipient;
+
 }

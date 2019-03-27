@@ -10,15 +10,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <RadioButton
-            android:id="@+id/simpleRadioButton"
+            android:id="@+id/rbNewProduction"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btxt_new_settlement"
+            android:text="@string/rtxt_new_production"
             />
         <RadioButton
-            android:id="@+id/simpleRadioButton1"
+            android:id="@+id/rbStockReversal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="@string/rtxt_stock_transfer_reversal"/>
+
+        <RadioButton
+            android:id="@+id/rbOthers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rtxt_others"/>
     </RadioGroup>
 
 </LinearLayout>

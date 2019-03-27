@@ -43,4 +43,13 @@
     <string name="title_activity_inventory_list">InventoryListActivity</string>
     <string name="btxt_delete">Delete</string>
     <string name="btxt_add">Add</string>
+
+
+    <string name="rtxt_new_production">New Production</string>
+    <string name="rtxt_stock_transfer_reversal">Stock Transfer Reversal</string>
+    <string name="rtxt_sale">Sale</string>
+    <string name="rtxt_stock_transfer">Stock Transfer </string>
+    <string name="rtxt_others">Others</string>
+
+
 </resources>

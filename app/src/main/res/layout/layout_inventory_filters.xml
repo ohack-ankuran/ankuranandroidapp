@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:orientation="vertical"
+              android:layout_height="match_parent"
+              android:background="@color/offwhite">
+
+    <TextView
+            android:id="@+id/categoryHeader"
+            android:text="@string/txt_categories"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textSize="20sp"
+            android:textColor="#0d5561"
+            android:lineSpacingExtra="4sp"
+    />
+    <android.support.v7.widget.RecyclerView
+            android:layout_margin="20dp"
+            android:id="@+id/categoryList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <View
+            android:id="@+id/divider"
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?android:attr/listDivider"
+    />
+
+    <TextView
+            android:id="@+id/labelHeader"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="@string/txt_labels"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textSize="20sp"
+            android:textColor="#0d5561"
+            android:lineSpacingExtra="4sp"
+    />
+    <android.support.v7.widget.RecyclerView
+            android:layout_margin="20dp"
+            android:id="@+id/labelList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <View
+            android:id="@+id/divider2"
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?android:attr/listDivider"
+    />
+
+    <Button
+            android:id="@+id/btnApplyFilters"
+            android:layout_marginVertical="20dp"
+            android:layout_gravity="center"
+            android:background="@drawable/rounded_button"
+            android:text="@string/btxt_apply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+</LinearLayout>

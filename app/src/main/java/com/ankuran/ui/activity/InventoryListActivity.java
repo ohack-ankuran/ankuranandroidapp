@@ -2,23 +2,25 @@ package com.ankuran.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import com.ankuran.AppConstant;
 import com.ankuran.AppMain;
 import com.ankuran.R;
-import com.ankuran.model.Employee;
 import com.ankuran.model.Item;
+import com.ankuran.model.ItemCategory;
+import com.ankuran.model.ItemFilterView;
+import com.ankuran.model.ItemLabel;
 import com.ankuran.model.dao.ItemList;
-import com.ankuran.ui.adaptar.ItemRecyclerViewAdapter;
+import com.ankuran.ui.adaptar.ItemCategoryFilterRecyclerViewAdapter;
+import com.ankuran.ui.adaptar.ItemFilterRecyclerViewAdapter;
+import com.ankuran.ui.adaptar.ItemLabelFilterRecyclerViewAdapter;
 import com.ankuran.ui.adaptar.listener.OnRecyclerItemClickListener;
 import com.ankuran.util.AppUtils;
 import com.ankuran.util.LogUtils;
@@ -26,7 +28,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -34,12 +38,18 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class InventoryListActivity extends BaseActivity implements OnRecyclerItemClickListener{
+public class InventoryListActivity extends BaseActivity implements OnRecyclerItemClickListener {
 
-    private List<Item> itemList;
-    RecyclerView mRecyclerView;
-    ItemRecyclerViewAdapter mAdapter;
-
+    private Set<ItemFilterView> mItemFilterViews;
+    private Set<ItemCategory> mCategories;
+    private Set<ItemLabel> mLabels;
+    private RecyclerView mCategoryRecyclerView;
+    private RecyclerView mLabelRecyclerView;
+    private RecyclerView mItemRecyclerView;
+    private ItemCategoryFilterRecyclerViewAdapter mItemCategoryRecyclerViewAdapter;
+    private ItemLabelFilterRecyclerViewAdapter mItemLabelRecyclerViewAdapter;
+    private ItemFilterRecyclerViewAdapter mItemFilterRecyclerViewAdapter;
+    private Button mButton;
 
     @Override
     protected int getContentViewId() {
@@ -48,19 +58,44 @@ public class InventoryListActivity extends BaseActivity implements OnRecyclerIte
 
     @Override
     protected void onCreateActivity(Bundle bundle) {
+        initFilterUI();
         initUI();
+    }
 
+    private void initFilterUI() {
+        mItemFilterViews = new HashSet<>();
+        mCategories = new HashSet<>();
+        mLabels = new HashSet<>();
+
+        mCategoryRecyclerView = findViewById(R.id.categoryList);
+        RecyclerView.LayoutManager mCategoryLayoutManager = new LinearLayoutManager(this);
+        mCategoryRecyclerView.setLayoutManager(mCategoryLayoutManager);
+        mItemCategoryRecyclerViewAdapter = new ItemCategoryFilterRecyclerViewAdapter(new ArrayList<ItemCategory>(), this);
+        mCategoryRecyclerView.setAdapter(mItemCategoryRecyclerViewAdapter);
+
+        mLabelRecyclerView = findViewById(R.id.labelList);
+        RecyclerView.LayoutManager mLabelLayoutManager = new GridLayoutManager(this, 3);
+        mLabelRecyclerView.setLayoutManager(mLabelLayoutManager);
+        mItemLabelRecyclerViewAdapter = new ItemLabelFilterRecyclerViewAdapter(new ArrayList<ItemLabel>(), this);
+        mLabelRecyclerView.setAdapter(mItemLabelRecyclerViewAdapter);
+
+        mButton = findViewById(R.id.btnApplyFilters);
+        mButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                applyFilters();
+            }
+        });
     }
 
     private void initUI() {
-        itemList = new ArrayList<>();
-        mRecyclerView = findViewById(R.id.itemRecyclerView);
+        mItemRecyclerView = findViewById(R.id.item_recycler_view);
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 3);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-//        mRecyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        setAdapter(null);
+        mItemRecyclerView.setLayoutManager(mLayoutManager);
+        mItemRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mItemFilterRecyclerViewAdapter = new ItemFilterRecyclerViewAdapter(new ArrayList<ItemFilterView>(), this);
+        mItemRecyclerView.setAdapter(mItemFilterRecyclerViewAdapter);
     }
 
     @Override
@@ -75,34 +110,82 @@ public class InventoryListActivity extends BaseActivity implements OnRecyclerIte
         AppMain.getDefaultNetWorkClient().allAllProducts().enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                if(response.code() == HttpsURLConnection.HTTP_OK){
+                if (response.code() == HttpsURLConnection.HTTP_OK) {
                     //TODO 
-                    Log.d("Shikha",new Gson().toJson(response.body()));
-                    ItemList list = new Gson().fromJson(response.body(),ItemList.class);
-                    setAdapter(list);
-
-                }else{
-                    Log.d("Shikha","not 200"+new Gson().toJson(response));
+                    Log.d("Shikha", new Gson().toJson(response.body()));
+                    ItemList list = new Gson().fromJson(response.body(), ItemList.class);
+                    buildItemFilterView(list);
+                } else {
+                    Log.d("Shikha", "not 200" + new Gson().toJson(response));
                 }
             }
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
                 //TODO: Show retrofit error dialog
-                LogUtils.debug("Network call onFailure get callv",new Gson().toJson(call));
+                LogUtils.debug("Network call onFailure get callv", new Gson().toJson(call));
             }
         });
     }
 
-    public void setAdapter(ItemList list) {
-        if (mAdapter == null) {
-            mAdapter = new ItemRecyclerViewAdapter(itemList,this);
-            mRecyclerView.setAdapter(mAdapter);
-        } else if (list!=null && AppUtils.isValidList(list.getItems())) {
-            mAdapter.setItemList(list.getItems());
-            mAdapter.notifyDataSetChanged();
+    private void buildItemFilterView(ItemList list) {
+        if (AppUtils.isValidList(list.getItems())) {
+            List<Item> itemList = list.getItems(); // gets initial items from db
+
+            // build view for item recycler view
+            for (Item item : itemList) {
+                mItemFilterViews.add(new ItemFilterView(item, buildItemCategory(item), buildItemLabel(item)));
+            }
+
+            mItemCategoryRecyclerViewAdapter.setCategories(new ArrayList<ItemCategory>(mCategories));
+            mItemCategoryRecyclerViewAdapter.notifyDataSetChanged();
+            assert (mItemCategoryRecyclerViewAdapter.getItemCount() == mCategories.size());
+
+            mItemLabelRecyclerViewAdapter.setLabels(new ArrayList<ItemLabel>(mLabels));
+            mItemLabelRecyclerViewAdapter.notifyDataSetChanged();
+            assert (mItemLabelRecyclerViewAdapter.getItemCount() == mLabels.size());
+
+            mItemFilterRecyclerViewAdapter.setItemList(new ArrayList<ItemFilterView>(mItemFilterViews));
+            mItemFilterRecyclerViewAdapter.notifyDataSetChanged();
+            assert (mItemFilterRecyclerViewAdapter.getItemCount() == mItemFilterViews.size());
 
         }
+    }
+
+    private ItemCategory buildItemCategory(Item item) {
+        ItemCategory itemCategory = new ItemCategory(item.getCategory(), false);
+        mCategories.add(itemCategory);
+        return itemCategory;
+    }
+
+    private List<ItemLabel> buildItemLabel(Item item) {
+        List<ItemLabel> itemLabels = new ArrayList<>();
+        List<String> labels = item.getLabels();
+        if (AppUtils.isValidList(labels)) {
+            for (String label : labels) {
+                ItemLabel itemLabel = new ItemLabel(label, false);
+                itemLabels.add(itemLabel);
+            }
+            mLabels.addAll(itemLabels);
+        }
+        return itemLabels;
+    }
+
+    private void applyFilters() {
+        Set<ItemFilterView> itemsFiltered = new HashSet<>();
+        for (ItemFilterView itemFilterView : mItemFilterViews) {
+            if (itemFilterView.category.isSelected()) {
+                itemsFiltered.add(itemFilterView);
+            }
+            for (ItemLabel label : itemFilterView.getLabels()) {
+                if (label.isSelected()) {
+                    itemsFiltered.add(itemFilterView);
+                }
+            }
+        }
+
+        mItemFilterRecyclerViewAdapter.setItemList(new ArrayList<>(itemsFiltered));
+        mItemFilterRecyclerViewAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -112,8 +195,8 @@ public class InventoryListActivity extends BaseActivity implements OnRecyclerIte
 
     @Override
     public void onItemClick(View view, int position, Object object) {
-        Item currentItem= (Item) object;
-        Intent intent = new Intent(InventoryListActivity.this,ItemDetailsActivity.class);
+        Item currentItem = (Item) object;
+        Intent intent = new Intent(InventoryListActivity.this, ItemDetailsActivity.class);
         intent.putExtra(AppConstant.KEY_CURRENT_ITEM, currentItem);
         startActivity(intent);
     }

@@ -3,6 +3,8 @@ package com.ankuran.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.ankuran.util.AppUtils;
+
 import java.io.Serializable;
 
 import lombok.Data;
@@ -20,7 +22,7 @@ public class Employee implements Serializable {
 
     public Employee() {
         //TODO check timeOfJoining format and set it there.
-        this.timeOfJoining="2019-01-12T00:15:21.030Z";
+        this.timeOfJoining = AppUtils.getCurrentDate();
     }
 
     protected Employee(Parcel in) {

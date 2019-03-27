@@ -74,14 +74,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,D
 
 
             case R.id.llInventory:
-                Intent inventoryIntent = new Intent(MainActivity.this,ItemGridViewActivity.class);
+                Intent inventoryIntent = new Intent(MainActivity.this,InventoryListActivity.class);
                 startActivity(inventoryIntent);
                 break;
 
 
             case R.id.llSocialReport:
 //                showDatePicker();
-                Intent socialReportIntent = new Intent(MainActivity.this,InventoryListActivity.class);
+                Intent socialReportIntent = new Intent(MainActivity.this,ItemGridViewActivity.class);
                 startActivity(socialReportIntent);
                 break;
         }

@@ -13,7 +13,10 @@
 
     <color name="headerBrown">#9b6e2e</color>
 
-
+    <color name="silver">#C0C0C0</color>
+    <color name="cyan">#00FFFF</color>
+    <color name="blue">#0000FF</color>
+    <color name="offwhite">#e5e5e5</color>
     <color name="colorWhite">#ffffff</color>
 
 

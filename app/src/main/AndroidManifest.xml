@@ -33,18 +33,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.ankuran.ui.activity.WorkersProfileListActivity"
-            android:label="@string/title_worker_list"/>
-        <activity android:name="com.ankuran.ui.activity.CalculateWageActivity" />
-        <activity android:name="com.ankuran.ui.activity.SocialReportActivity" />
-        <activity android:name="com.ankuran.ui.activity.InventoryDetailsActivity" />
-        <activity android:name="com.ankuran.ui.activity.AddNewWorker"
+        <activity
+            android:name=".ui.activity.WorkersProfileListActivity"
+            android:label="@string/title_worker_list" />
+        <activity android:name=".ui.activity.CalculateWageActivity" />
+        <activity android:name=".ui.activity.SocialReportActivity" />
+        <activity android:name=".ui.activity.InventoryDetailsActivity" />
+        <activity
+            android:name=".ui.activity.AddNewWorker"
             android:label="@string/title_add_new_worker" />
-        <activity android:name="com.ankuran.ui.activity.AddPaymentWageActivity" />
-        <activity android:name="com.ankuran.ui.activity.WorkerActivityList"
-            android:label="@string/title_worker_profile"/>
-        <activity android:name="com.ankuran.ui.activity.ItemGridViewActivity" />
-        <activity android:name="com.ankuran.ui.activity.AddNewItem"></activity>
+        <activity android:name=".ui.activity.AddPaymentWageActivity" />
+        <activity
+            android:name=".ui.activity.WorkerActivityList"
+            android:label="@string/title_worker_profile" />
+        <activity android:name=".ui.activity.ItemGridViewActivity" />
+        <activity android:name=".ui.activity.AddNewItem" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -112,7 +115,8 @@
         </service>
         <!-- END of imagesyncadapter declaration -->
 
-        <activity android:name=".ui.activity.PayoutReportActivity"></activity>
+        <activity android:name=".ui.activity.PayoutReportActivity" />
+        <activity android:name=".ui.activity.AddNewSettlementActivity"></activity>
     </application>
 
 </manifest>

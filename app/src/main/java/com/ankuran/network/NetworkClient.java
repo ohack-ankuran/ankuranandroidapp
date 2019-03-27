@@ -32,6 +32,10 @@ public interface NetworkClient {
     String SEGMENT_PRRODUCT="/products";
     String SEGMENT_PAYOUT_ACTIVITY="/payment-activities";
 
+    String SEGMENT_SETTLEMENT="/settlements";
+
+
+
 
 
     @GET(SEGMENT_ANKURAN_APP +SEGMENT_CENTER+SEGMENT_EMPLOYEES+SEGMENT_PAYOUT_ACTIVITY)
@@ -54,6 +58,9 @@ public interface NetworkClient {
 
     @GET(SEGMENT_ANKURAN_APP +SEGMENT_CENTER+SEGMENT_EMPLOYEES)
     Call<JsonObject> allEmployee();
+
+    @GET(SEGMENT_ANKURAN_APP +SEGMENT_CENTER+SEGMENT_SETTLEMENT)
+    Call<JsonObject> allSettlement();
 
     @POST(SEGMENT_ANKURAN_APP +SEGMENT_CENTER+SEGMENT_EMPLOYEES)
     Call<JsonObject> addEmployee(@Body Employee employee);

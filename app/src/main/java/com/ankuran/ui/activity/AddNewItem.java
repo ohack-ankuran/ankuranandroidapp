@@ -102,7 +102,7 @@ public class AddNewItem extends BaseActivity implements View.OnClickListener,Dia
         item.setName(fullName);
         String type = mETType.getText() != null ? mETType.getText().toString().trim() : "";
         if (!TextUtils.isEmpty(type)) {
-            item.setType(type);
+            item.setCategory(type);
         } else {
             showToast("Please enter valid time");
         }

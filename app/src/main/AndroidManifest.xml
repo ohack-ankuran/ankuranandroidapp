@@ -125,7 +125,8 @@
             android:name=".ui.activity.InventoryListActivity"
             android:label="@string/title_activity_inventory_list"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.activity.ItemDetailsActivity"></activity>
+        <activity android:name=".ui.activity.ItemDetailsActivity" />
+        <activity android:name=".AddNewProduct"></activity>
     </application>
 
 </manifest>

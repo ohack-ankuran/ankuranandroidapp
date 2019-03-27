@@ -41,4 +41,6 @@
     <string name="title_add_settlement">Add Settlement</string>
     <string name="title_report">Payout Report</string>
     <string name="title_activity_inventory_list">InventoryListActivity</string>
+    <string name="btxt_delete">Delete</string>
+    <string name="btxt_add">Add</string>
 </resources>

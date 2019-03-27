@@ -5,14 +5,14 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 
 import com.ankuran.R;
-import com.ankuran.ui.adaptar.SettlementTabAdapter;
+import com.ankuran.ui.adaptar.TabAdapter;
 import com.ankuran.ui.fragment.PayoutReportFragment;
 import com.ankuran.ui.fragment.SettlementReportFragment;
 
 public class PayoutReportActivity extends BaseActivity  {
 
 
-    private SettlementTabAdapter mTabAdaptor;
+    private TabAdapter mTabAdaptor;
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
@@ -31,7 +31,7 @@ public class PayoutReportActivity extends BaseActivity  {
     private void initUI() {
         viewPager =  findViewById(R.id.viewPager);
         tabLayout = findViewById(R.id.tabLayout);
-        mTabAdaptor = new SettlementTabAdapter(getSupportFragmentManager());
+        mTabAdaptor = new TabAdapter(getSupportFragmentManager());
         mTabAdaptor.addFragment(new PayoutReportFragment(), "Payout");
         mTabAdaptor.addFragment(new SettlementReportFragment(), "Settlement");
         viewPager.setAdapter(mTabAdaptor);

@@ -8,6 +8,7 @@ public class AppConstant {
     public static final int CAMERA_REQUEST_CODE =1000 ;
     public static final String KEY_ACTIVITY_TYPE="Activity Type";
     public static final String KEY_CURRENT_EMPLOYEE="Current Employee";
+    public static final String KEY_CURRENT_ITEM="Current Item";
     private static final Object MAIN_FOLDER = "Ankuran" ;
 
     public static final  String AWS_ACCESS_KEY = "AKIAIXBNYISC5EM4KKZQ";

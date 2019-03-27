@@ -81,7 +81,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener,D
 
             case R.id.llSocialReport:
 //                showDatePicker();
-                Intent socialReportIntent = new Intent(MainActivity.this,SocialReportActivity.class);
+                Intent socialReportIntent = new Intent(MainActivity.this,InventoryListActivity.class);
                 startActivity(socialReportIntent);
                 break;
         }

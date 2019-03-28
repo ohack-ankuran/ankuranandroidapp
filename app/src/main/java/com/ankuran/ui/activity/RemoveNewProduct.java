@@ -169,7 +169,7 @@ public class RemoveNewProduct extends BaseActivity implements View.OnClickListen
         mQuantitySpinner=findViewById(R.id.npRemoveQuantity);
         Integer[] items = new Integer[50];
         for (int i=0;i<50;i++){
-            items[i]=i;
+            items[i]=i+1;
         }
         ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_item, items);
         mQuantitySpinner.setOnItemSelectedListener(this);

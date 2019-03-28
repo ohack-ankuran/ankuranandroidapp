@@ -74,13 +74,14 @@ public class GroupWagesActivity extends BaseActivity implements OnRecyclerItemCl
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setIndexbarHighLateTextColor("#020202");
         mRecyclerView.setIndexBarHighLateTextVisibility(true);
+        
         mRecyclerView.setIndexBarColor("#FFFFFF");
         mRecyclerView.setIndexBarTextColor("#888383");
-        mRecyclerView.setIndexTextSize(30);
         mRecyclerView.setPreviewVisibility(true);
-        mRecyclerView.setIndexbarWidth(50);
-        mRecyclerView.setPreviewPadding(10);
+//        mRecyclerView.setIndexbarWidth(50);
+//        mRecyclerView.setPreviewPadding(10);
         mRecyclerView.setIndexbarMargin(10);
+        mRecyclerView.setIndexTextSize(15);
     }
 
     private void getAllEmployee() {

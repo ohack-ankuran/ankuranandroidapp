@@ -2,6 +2,7 @@ package com.ankuran.ui.adaptar;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,6 +70,16 @@ public class GroupWagesRecyclerViewAdapter extends RecyclerView.Adapter<GroupWag
         holder.mTextView.setText(gwe.getEmployee().getFullName());
         holder.mCheckBox.setChecked(gwe.getSelected());
         holder.mCheckBox.setTag(gwe);
+
+        if(!TextUtils.isEmpty(gwe.getEmployee().getMobile())){
+            holder.txtMobile.setText(gwe.getEmployee().getMobile());
+        }else{
+            holder.txtMobile.setText("");
+        }
+        holder.txtAmount.setText("Rs "+gwe.getEmployee().getOutstandingDue());
+
+
+
         holder.mCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,9 +111,14 @@ public class GroupWagesRecyclerViewAdapter extends RecyclerView.Adapter<GroupWag
         public TextView mTextView;
         public CheckBox mCheckBox;
         public CardView mCardView;
+        TextView txtMobile;
+        TextView txtAmount;
 
         public ViewHolder(View itemView) {
             super(itemView);
+
+            txtMobile =itemView.findViewById(R.id.mobile);
+            txtAmount =itemView.findViewById(R.id.dueAmount);
             mTextView = itemView.findViewById(R.id.name);
             mCheckBox = itemView.findViewById(R.id.checkBox);
             mCardView = itemView.findViewById(R.id.item_card_view);

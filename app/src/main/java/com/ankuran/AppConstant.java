@@ -11,8 +11,8 @@ public class AppConstant {
     public static final String KEY_CURRENT_ITEM="Current Item";
     private static final Object MAIN_FOLDER = "Ankuran" ;
 
-    public static final  String AWS_ACCESS_KEY = "AKIAIXBNYISC5EM4KKZQ";
-    public static final  String AWS_SECRET_KEY = "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";
+    public static final  String AWS_ACCESS_KEY = "";
+    public static final  String AWS_SECRET_KEY = "";
     public static final  String AWS_IMAGES_BUCKET_NAME = "ankuran-images";
     public static final  String AWS_TEST_FOLDER="test_uploads/";
     public static final  String AWS_ANKURAN_FOLDER="ankuran/";

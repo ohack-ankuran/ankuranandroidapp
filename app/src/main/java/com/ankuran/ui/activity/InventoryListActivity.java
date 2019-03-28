@@ -74,7 +74,7 @@ public class InventoryListActivity extends BaseActivity implements OnRecyclerIte
         mCategoryRecyclerView.setAdapter(mItemCategoryRecyclerViewAdapter);
 
         mLabelRecyclerView = findViewById(R.id.labelList);
-        RecyclerView.LayoutManager mLabelLayoutManager = new GridLayoutManager(this, 3);
+        RecyclerView.LayoutManager mLabelLayoutManager = new GridLayoutManager(this, 2);
         mLabelRecyclerView.setLayoutManager(mLabelLayoutManager);
         mItemLabelRecyclerViewAdapter = new ItemLabelFilterRecyclerViewAdapter(new ArrayList<ItemLabel>(), this);
         mLabelRecyclerView.setAdapter(mItemLabelRecyclerViewAdapter);
@@ -91,7 +91,7 @@ public class InventoryListActivity extends BaseActivity implements OnRecyclerIte
     private void initUI() {
         mItemRecyclerView = findViewById(R.id.item_recycler_view);
 
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 3);
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
         mItemRecyclerView.setLayoutManager(mLayoutManager);
         mItemRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mItemFilterRecyclerViewAdapter = new ItemFilterRecyclerViewAdapter(new ArrayList<ItemFilterView>(), this);
@@ -172,22 +172,24 @@ public class InventoryListActivity extends BaseActivity implements OnRecyclerIte
     }
 
     private void applyFilters() {
+        boolean filterSelected = false;
         Set<ItemFilterView> itemsFiltered = new HashSet<>();
         for (ItemFilterView itemFilterView : mItemFilterViews) {
             if (itemFilterView.category.isSelected()) {
+                filterSelected = true;
                 itemsFiltered.add(itemFilterView);
             }
             for (ItemLabel label : itemFilterView.getLabels()) {
                 if (label.isSelected()) {
+                    filterSelected = true;
                     itemsFiltered.add(itemFilterView);
                 }
             }
         }
 
-        mItemFilterRecyclerViewAdapter.setItemList(new ArrayList<>(itemsFiltered));
+        mItemFilterRecyclerViewAdapter.setItemList(new ArrayList<>(filterSelected ? itemsFiltered : new ArrayList<ItemFilterView>(mItemFilterViews)));
         mItemFilterRecyclerViewAdapter.notifyDataSetChanged();
     }
-
     @Override
     public void onItemClick(View view, int position) {
 

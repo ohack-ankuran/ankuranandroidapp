@@ -8,4 +8,5 @@ import lombok.Data;
 @Data
 public class SettlementList implements Serializable {
     List<Settlement>settlements;
+    Double outstandingSettlement;
 }

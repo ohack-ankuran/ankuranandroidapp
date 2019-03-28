@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.ankuran.AppMain;
 import com.ankuran.R;
@@ -62,6 +63,7 @@ public class SettlementReportFragment extends BaseFragment implements OnRecycler
     String endDate="2019-03-30";
 
     IFilterClick callback;
+    TextView mOutstandingAmount;
 
     public void setFilterClick(IFilterClick callback) {
         this.callback = callback;
@@ -99,6 +101,7 @@ public class SettlementReportFragment extends BaseFragment implements OnRecycler
         mNoDataFoundContainer=mView.findViewById(R.id.noDataFoundContainer);
         mRecyclerView = mView.findViewById(R.id.settlementRecyclerView);
         mAddNewSettlement=mView.findViewById(R.id.btnAddNewSettlement);
+        mOutstandingAmount=mView.findViewById(R.id.outstandingAmount);
         mAddNewSettlement.setOnClickListener(this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -116,8 +119,8 @@ public class SettlementReportFragment extends BaseFragment implements OnRecycler
                 if(response.code() == HttpsURLConnection.HTTP_OK){
                     //TODO put validation check
                     Log.d("getAllActivities",new Gson().toJson(response.body()));
-
                     SettlementList list = new Gson().fromJson(response.body(),SettlementList.class);
+                    mOutstandingAmount.setText("Outstanding "+getString(R.string.Rs)+list.getOutstandingSettlement());
                     setAdapter(list);
                     hideProgressDialog();
                 }else{

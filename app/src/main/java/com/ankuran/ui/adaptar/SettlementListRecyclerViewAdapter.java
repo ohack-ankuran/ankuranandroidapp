@@ -69,7 +69,14 @@ public class SettlementListRecyclerViewAdapter extends RecyclerView.Adapter<Sett
             if(!TextUtils.isEmpty(settlement.getTimeCreated()))
                 txtDate.setText(AppUtils.getReadableDate(settlement.getTimeCreated()));
             txtDueAmount.setText("RS "+settlement.getAmount());
-            txtDueAmount.setTextColor(Color.parseColor("#009688"));
+
+            if(settlement.isCorrection()){
+                txtDueAmount.setTextColor(Color.parseColor("#ff0000"));
+                txtDate.setTextColor(Color.parseColor("#ff0000"));
+            }else{
+                txtDueAmount.setTextColor(Color.parseColor("#009688"));
+                txtDate.setTextColor(Color.parseColor("#009688"));
+            }
             txtItem.setVisibility(View.INVISIBLE);
             txtQuantity.setVisibility(View.INVISIBLE);
 

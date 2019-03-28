@@ -1,6 +1,7 @@
 package com.ankuran.ui.adaptar;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.ankuran.R;
 import com.ankuran.model.ItemHistory;
+import com.ankuran.model.ItemHistoryEnum;
 import com.ankuran.ui.adaptar.listener.OnRecyclerItemClickListener;
 import com.ankuran.util.AppUtils;
 
@@ -68,9 +70,19 @@ public class ItemHistoryListRecyclerViewAdapter extends RecyclerView.Adapter<Ite
             if (!TextUtils.isEmpty(itemHistory.getTimeCreated()))
                 txtDate.setText(AppUtils.getReadableDate(itemHistory.getTimeCreated()));
 
-            txtDueAmount.setText("Rs"+itemHistory.getTotalAmount());
-            txtItem.setVisibility(View.INVISIBLE);
-            txtQuantity.setVisibility(View.INVISIBLE);
+            txtDueAmount.setText(itemHistory.getNotes());
+            txtItem.setVisibility(View.GONE);
+            txtQuantity.setText(""+itemHistory.getUnits());
+
+            if(itemHistory.getType().equals(ItemHistoryEnum.HistoryType.REMOVE)){
+                txtDueAmount.setTextColor(Color.parseColor("#ff0000"));
+                txtDate.setTextColor(Color.parseColor("#ff0000"));
+                txtQuantity.setTextColor(Color.parseColor("#ff0000"));
+            }else{
+                txtDueAmount.setTextColor(Color.parseColor("#009688"));
+                txtDate.setTextColor(Color.parseColor("#009688"));
+                txtQuantity.setTextColor(Color.parseColor("#009688"));
+            }
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

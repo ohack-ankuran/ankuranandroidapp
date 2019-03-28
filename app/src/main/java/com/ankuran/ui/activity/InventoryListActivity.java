@@ -172,19 +172,22 @@ public class InventoryListActivity extends BaseActivity implements OnRecyclerIte
     }
 
     private void applyFilters() {
+        boolean filterSelected = false;
         Set<ItemFilterView> itemsFiltered = new HashSet<>();
         for (ItemFilterView itemFilterView : mItemFilterViews) {
             if (itemFilterView.category.isSelected()) {
+                filterSelected = true;
                 itemsFiltered.add(itemFilterView);
             }
             for (ItemLabel label : itemFilterView.getLabels()) {
                 if (label.isSelected()) {
+                    filterSelected = true;
                     itemsFiltered.add(itemFilterView);
                 }
             }
         }
 
-        mItemFilterRecyclerViewAdapter.setItemList(new ArrayList<>(itemsFiltered));
+        mItemFilterRecyclerViewAdapter.setItemList(new ArrayList<>(filterSelected ? itemsFiltered : new ArrayList<ItemFilterView>(mItemFilterViews)));
         mItemFilterRecyclerViewAdapter.notifyDataSetChanged();
     }
 

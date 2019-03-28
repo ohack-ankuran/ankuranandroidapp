@@ -74,6 +74,7 @@ public class ItemLabelFilterRecyclerViewAdapter extends RecyclerView.Adapter<Ite
                     Button btn = (Button) v;
                     ItemLabel label = (ItemLabel) btn.getTag();
                     label.setSelected(btn.isSelected());
+                    mBtnLabel.setHighlightColor(itemLabel.isSelected() ? Color.CYAN : Color.BLUE);
                     mLabels.get(position).setSelected(btn.isSelected());
                 }
             });

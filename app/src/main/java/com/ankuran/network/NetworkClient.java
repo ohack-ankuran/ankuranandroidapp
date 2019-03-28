@@ -59,14 +59,6 @@ public interface NetworkClient {
     Call<JsonObject> getProductByID(@Path("itemId") long itemId);
 
 
-
-//
-//    @GET(SEGMENT_ANKURAN_APP +SEGMENT_TODOS+ "/{todoId}")
-//    Call<JsonObject> todos(@Path("todoId") String todoId);
-//
-//    @POST(SEGMENT_ANKURAN_APP + SEGMENT_POSTS)
-//    Call<JsonObject> posts(@Body JsonObject data);
-
     @GET(SEGMENT_ANKURAN_APP +SEGMENT_CATALOGUE+SEGMENT_PRRODUCT)
     Call<JsonObject> allAllProducts();
 
@@ -85,6 +77,10 @@ public interface NetworkClient {
 
     @PATCH(SEGMENT_ANKURAN_APP +SEGMENT_CENTER+SEGMENT_EMPLOYEES+"{employeeId}")
     Call<JsonObject> updateEmployee(@Path("employeeId") long employeeId,@Body Employee employee);
+
+
+    @GET(SEGMENT_ANKURAN_APP +SEGMENT_CENTER+SEGMENT_EMPLOYEES+"{employeeId}")
+    Call<JsonObject> getEmployee(@Path("employeeId") long employeeId);
 
     @POST(SEGMENT_ANKURAN_APP +SEGMENT_CENTER+SEGMENT_EMPLOYEES+SEGMENT_GROUP_WAGES)
     Call<JsonObject> saveGroupWages(@Body GroupWage groupWage);

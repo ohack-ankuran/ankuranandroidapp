@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -17,6 +18,7 @@ import com.ankuran.AppConstant;
 import com.ankuran.AppMain;
 import com.ankuran.model.Activity;
 import com.ankuran.model.Employee;
+import com.ankuran.model.Item;
 import com.ankuran.model.dao.ActivityList;
 import com.ankuran.ui.adaptar.ActivityListRecyclerViewAdapter;
 import com.ankuran.ui.adaptar.listener.OnRecyclerItemClickListener;
@@ -45,15 +47,25 @@ public class WorkerActivityList extends BaseActivity implements OnRecyclerItemCl
     ActivityListRecyclerViewAdapter mAdapter;
     private List<Activity> activityList;
 
-    TextView addWage,addPayment,mTVStartDate,mTVEndDate;
+    TextView addWage,addPayment;
 
     TextView txtName,txtMobile,txtDate,txtDueAmount;
 
-    LinearLayout mLLStartDate,mLLEndDate;
 
-    Boolean isStartDate=true;
+
     Intent intent;
     Employee currentEmployee;
+
+    LinearLayout mNoDataFoundContainer;
+    Button mBtnView;
+    LinearLayout mLLStartDate,mLLEndDate;
+    TextView mTVStartDate,mTVEndDate;
+    Boolean isStartDate=true;
+
+    String startDate="2019-02-21";
+    String endDate="2019-03-30";
+
+
 
     @Override
     protected int getContentViewId() {
@@ -70,13 +82,14 @@ public class WorkerActivityList extends BaseActivity implements OnRecyclerItemCl
     @Override
     protected void onResume() {
         super.onResume();
-        getAllActivities();
+        getAllActivities(startDate,endDate);
+       getEmployeeById();
     }
 
-    private void getAllActivities() {
+    private void getAllActivities(String startDate,String endDate) {
         Log.d(TAG, "getAllEmployee");
 
-        AppMain.getDefaultNetWorkClient().getAllActivities(currentEmployee.getId(),"2019-02-21","2019-03-28","").enqueue(new Callback<JsonObject>() {
+        AppMain.getDefaultNetWorkClient().getAllActivities(currentEmployee.getId(),startDate,endDate,"").enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.code() == HttpsURLConnection.HTTP_OK){
@@ -85,11 +98,14 @@ public class WorkerActivityList extends BaseActivity implements OnRecyclerItemCl
 //                    Type listType = new TypeToken<List<Activity>>() {}.getType();
 //                    List<Activity>list = new Gson().fromJson(response.body(),listType);
 
-
                     ActivityList list = new Gson().fromJson(response.body(),ActivityList.class);
                     setAdapter(list);
+                    hideProgressDialog();
+
                 }else{
                     Log.d("Shikha","not 200"+new Gson().toJson(response));
+                    hideProgressDialog();
+                    showNoDataFoundContainer();
                 }
             }
 
@@ -97,6 +113,8 @@ public class WorkerActivityList extends BaseActivity implements OnRecyclerItemCl
             public void onFailure(Call<JsonObject> call, Throwable t) {
                 //TODO: Show retrofit error dialog
                 LogUtils.debug("Network call onFailure get callv",new Gson().toJson(call));
+                hideProgressDialog();
+                showNoDataFoundContainer();
             }
         });
 
@@ -105,15 +123,13 @@ public class WorkerActivityList extends BaseActivity implements OnRecyclerItemCl
 
 
     private void initUI() {
+        mNoDataFoundContainer=findViewById(R.id.noDataFoundContainer);
         addWage =findViewById(R.id.tvAddWage);
         addWage.setOnClickListener(this);
         addPayment =findViewById(R.id.tvAddPayout);
         addPayment.setOnClickListener(this);
 
-        mLLStartDate =findViewById(R.id.llStartDateContainer);
-        mLLStartDate.setOnClickListener(this);
-        mLLEndDate =findViewById(R.id.llEndDateContainer);
-        mLLEndDate.setOnClickListener(this);
+
 
         mTVStartDate =findViewById(R.id.tvStartDate);
         mTVEndDate =findViewById(R.id.tvEndDate);
@@ -123,6 +139,16 @@ public class WorkerActivityList extends BaseActivity implements OnRecyclerItemCl
         txtMobile =findViewById(R.id.txtMobile);
         txtDate =findViewById(R.id.txtDate);
         txtDueAmount =findViewById(R.id.txtDueAmount);
+
+        mLLStartDate =findViewById(R.id.llStartDateContainer);
+        mLLStartDate.setOnClickListener(this);
+        mLLEndDate =findViewById(R.id.llEndDateContainer);
+        mLLEndDate.setOnClickListener(this);
+
+        mTVStartDate =findViewById(R.id.tvStartDate);
+        mTVEndDate =findViewById(R.id.tvEndDate);
+        mBtnView=findViewById(R.id.btnView);
+        mBtnView.setOnClickListener(this);
 
 
 
@@ -222,10 +248,19 @@ public class WorkerActivityList extends BaseActivity implements OnRecyclerItemCl
                 showDatePicker(this);
                 break;
 
+            case R.id.btnView:
+                  showProgressDialog();
+                String startDate = mTVStartDate.getText()!=null && !TextUtils.isEmpty(mTVStartDate.getText().toString()) ? mTVStartDate.getText().toString().trim() : "2019-02-21";
+                String endDate = mTVEndDate.getText() != null && !TextUtils.isEmpty(mTVEndDate.getText().toString())? mTVEndDate.getText().toString().trim() : "2019-03-30";
+                 getAllActivities(startDate,endDate);
+
+                break;
+
         }
     }
 
     public void setAdapter(ActivityList list) {
+        mNoDataFoundContainer.setVisibility(View.GONE);
         if (mAdapter == null) {
             mAdapter = new ActivityListRecyclerViewAdapter(activityList,this);
             mRecyclerView.setAdapter(mAdapter);
@@ -233,13 +268,20 @@ public class WorkerActivityList extends BaseActivity implements OnRecyclerItemCl
             mAdapter.setActivityList(list.getActivities());
             mAdapter.notifyDataSetChanged();
 
+        }else {
+            showNoDataFoundContainer();
         }
     }
 
+    private void showNoDataFoundContainer() {
+        mAdapter.setActivityList(new ArrayList<Activity>());
+        mAdapter.notifyDataSetChanged();
+        mNoDataFoundContainer.setVisibility(View.VISIBLE);
+    }
 
     @Override
     public void onDateSelected(DatePicker view, int day, int month, int year) {
-        String date=year + " / " + month + " / " + day;
+        String date=year + "-" + month + "- " + day;
         //Todo set date
         if(isStartDate){
             mTVStartDate.setText(date);
@@ -248,5 +290,32 @@ public class WorkerActivityList extends BaseActivity implements OnRecyclerItemCl
         }
 
         isStartDate=!isStartDate;
+    }
+
+
+    private void getEmployeeById() {
+        AppMain.getDefaultNetWorkClient().getEmployee(currentEmployee.getId()).enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if(response.code() == HttpsURLConnection.HTTP_OK){
+                    //TODO put validation check
+                    Log.d("getAllActivities",new Gson().toJson(response.body()));
+                    Employee employee = new Gson().fromJson(response.body(),Employee.class);
+                    currentEmployee=employee;
+                    setEmployeeProfile(currentEmployee);
+                }else{
+                    Log.d("Shikha","not 200"+new Gson().toJson(response));
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                //TODO: Show retrofit error dialog
+                LogUtils.debug("Network call onFailure get callv",new Gson().toJson(call));
+
+            }
+        });
+
     }
 }

@@ -51,11 +51,13 @@ public class AddPaymentWageActivity extends BaseActivity implements View.OnClick
     Button mBtnAddPayment,mBtnAddWage;
 
     AppCompatSpinner mQuantitySpinner;
+
+    AppCompatSpinner mSpinnerWageItem;
     Employee currentEmployee;
 
     TextView txtName,txtMobile,txtDate,txtDueAmount;
     int quantity=1;
-
+    String item="Apron";
 
 
     @Override
@@ -95,6 +97,7 @@ public class AddPaymentWageActivity extends BaseActivity implements View.OnClick
 
         setCurrentDate();
         setNumberSpinner();
+        setItemSpinner();
         intent = getIntent();
         if (intent != null) {
             activityType = (AppConstant.ACTIVITY_TYPE) intent.getSerializableExtra(AppConstant.KEY_ACTIVITY_TYPE);
@@ -139,11 +142,22 @@ public class AddPaymentWageActivity extends BaseActivity implements View.OnClick
         mQuantitySpinner=findViewById(R.id.npWageQuantity);
         Integer[] items = new Integer[50];
         for (int i=0;i<50;i++){
-            items[i]=i;
+            items[i]=i+1;
         }
         ArrayAdapter<Integer> adapter = new ArrayAdapter<Integer>(this,android.R.layout.simple_spinner_item, items);
         mQuantitySpinner.setOnItemSelectedListener(this);
         mQuantitySpinner.setAdapter(adapter);
+    }
+
+
+    private void setItemSpinner() {
+        mSpinnerWageItem=findViewById(R.id.npSpinnerWageItem);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.array_item, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mSpinnerWageItem.setOnItemSelectedListener(this);
+        mSpinnerWageItem.setAdapter(adapter);
     }
 
 
@@ -262,8 +276,8 @@ public class AddPaymentWageActivity extends BaseActivity implements View.OnClick
         DueDetail dueDetail =new DueDetail();
         dueDetail.setDistributionType(EmployeeActivityEnum.DueDistributionType.INDIVIDUAL.toString());
         Item item= new Item();
-        item.setId(102);
-        item.setName("Green Apron");
+//        item.setId(102);
+        item.setName(this.item);
         dueDetail.setItem(item);
         dueDetail.setQuantity(quantity);
         dueDetail.setDuePerItem(Double.valueOf(amount));
@@ -307,7 +321,7 @@ public class AddPaymentWageActivity extends BaseActivity implements View.OnClick
             operation="Due";
         if(response.code() == HttpsURLConnection.HTTP_OK ||response.code() == HttpsURLConnection.HTTP_CREATED||response.code() == HttpsURLConnection.HTTP_ACCEPTED){
             Log.d("Shikha",new Gson().toJson(response.body()));
-            showInfoDialog("", operation+"added successfully!!",this);
+            showInfoDialog("", operation+" added successfully!!",this);
 
         }else{
             Log.d("Shikha","not 200"+new Gson().toJson(response));
@@ -332,7 +346,16 @@ public class AddPaymentWageActivity extends BaseActivity implements View.OnClick
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        quantity = (int) adapterView.getItemAtPosition(i);
+        switch (adapterView.getId()){
+            case R.id.npWageQuantity:
+                quantity = (int) adapterView.getItemAtPosition(i);
+                break;
+
+            case R.id.npSpinnerWageItem:
+                item= (String) adapterView.getItemAtPosition(i);
+                break;
+        }
+
     }
 
     @Override

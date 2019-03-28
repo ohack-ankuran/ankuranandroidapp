@@ -36,18 +36,21 @@
 
         <EditText
             android:id="@+id/etWageDate"
-            android:hint="11 JAN 2019"
+            android:text="11 Jan 2019"
             android:layout_weight="7"
             android:layout_width="0dp"
             android:enabled="false"
-            android:background="@drawable/bg_rounded_edittext"
+            android:background="@android:color/transparent"
+            android:textColor="@color/addWorkText"
             android:layout_height="wrap_content" />
+
+
 
 
     </LinearLayout>
 
     <LinearLayout
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_marginTop="15dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -64,9 +67,13 @@
             />
 
         <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/npSpinnerWageItem"
             android:layout_weight="7"
             android:layout_width="0dp"
-            android:layout_height="40dp"></android.support.v7.widget.AppCompatSpinner>
+            android:layout_height="40dp"
+            android:drawSelectorOnTop="true"
+            android:entries="@array/array_item"
+            ></android.support.v7.widget.AppCompatSpinner>
 
 
     </LinearLayout>

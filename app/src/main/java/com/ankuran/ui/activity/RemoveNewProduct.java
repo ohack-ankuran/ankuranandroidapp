@@ -145,10 +145,15 @@ public class RemoveNewProduct extends BaseActivity implements View.OnClickListen
         String note = mNote.getText() != null ? mNote.getText().toString().trim() : "";
         history.setNotes(note);
         history.setUnits(quantity);
-        String fullAmount = mEtFullAmount.getText() != null ? mEtFullAmount.getText().toString().trim() : "";
-        history.setTotalAmount(Double.valueOf(fullAmount));
         String price = mEtAmount.getText() != null ? mEtAmount.getText().toString().trim() : "";
-        history.setActualUnitSalePrice(Double.valueOf(price));
+        if(!TextUtils.isEmpty(price)){
+            String fullAmount = mEtFullAmount.getText() != null ? mEtFullAmount.getText().toString().trim() : "";
+            history.setTotalAmount(Double.valueOf(fullAmount));
+            history.setActualUnitSalePrice(Double.valueOf(price));
+        }else{
+            showToast("Please enter valid price");
+        }
+
         history.setTimeCreated(AppUtils.getCurrentDate());
         history.setItemId(Long.valueOf(currentItem.getId()));
         history.setCentreId(1L);

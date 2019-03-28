@@ -64,4 +64,19 @@
     <string name="txt_no_data_found">No Data Found</string>
 
 
+    <string-array name="array_item">
+        <item>Apron</item>
+        <item>Embroidered Apron</item>
+        <item>Bedsheet-Plan</item>
+        <item>Bedsheet-Floral</item>
+        <item>Bedsheet-Embroidered</item>
+        <item>Shopping Bag</item>
+        <item>Hand Purse</item>
+        <item>Pencil box</item>
+        <item>Pillow Cover-Plan</item>
+        <item>Pillow Cover-Floral</item>
+        <item>Pillow Cover-Embroidered</item>
+    </string-array>
+
+
 </resources>

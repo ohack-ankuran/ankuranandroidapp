@@ -22,4 +22,9 @@
         android:id="@+id/activityRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+    <include
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/segment_no_data_found" />
 </LinearLayout>

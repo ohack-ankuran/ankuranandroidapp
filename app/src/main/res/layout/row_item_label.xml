@@ -9,5 +9,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="4dp"
             android:id="@+id/btnItemLabel"
-            android:background="@color/viewBg"/>
+            android:background="@color/viewBg"
+    />
 </LinearLayout>

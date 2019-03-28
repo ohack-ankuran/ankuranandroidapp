@@ -43,6 +43,7 @@ public class ItemCategoryFilterRecyclerViewAdapter extends RecyclerView.Adapter<
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+//        holder.bind(mCategories.get(position), onRecyclerItemCategoryClickListener,position);
         final int pos = position;
         ItemCategory itemCategory = mCategories.get(pos);
         holder.mCheckBox.setText(itemCategory.getCategory());
@@ -66,10 +67,25 @@ public class ItemCategoryFilterRecyclerViewAdapter extends RecyclerView.Adapter<
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public CheckBox mCheckBox;
+        CheckBox mCheckBox;
         ViewHolder(View itemView) {
             super(itemView);
-            mCheckBox = itemView.findViewById(R.id.cbItemCategory);
+            mCheckBox = itemView.findViewById(R.id.cb_item_category);
         }
+
+//        public void bind(final ItemCategory itemCategory, final OnRecyclerItemClickListener listener, final int position) {
+//            mCheckBox.setText(itemCategory.getCategory());
+//            mCheckBox.setChecked(itemCategory.isSelected());
+//            mCheckBox.setTag(itemCategory);
+//            mCheckBox.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    CheckBox cb = (CheckBox) v;
+//                    ItemCategory category = (ItemCategory) cb.getTag();
+//                    category.setSelected(cb.isChecked());
+//                    mCategories.get(position).setSelected(cb.isChecked());
+//                }
+//            });
+//        }
     }
 }
